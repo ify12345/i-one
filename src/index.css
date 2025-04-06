@@ -23,3 +23,16 @@ body{
     background-size: cover;
     background-position: center;
   }
+  
+  /* .custom-radio:not(:checked) + .radio-container .inner-circle {
+    background-color: #CCCED4;
+  } */
+
+  .custom-radio:checked + .radio-container {
+    border-color: #00FF94;
+  }
+  
+  .custom-radio:checked + .radio-container .inner-circle {
+    background-color: #00FF94;
+    ;
+  } 

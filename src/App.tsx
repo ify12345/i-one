@@ -5,6 +5,7 @@ import How from './screens/how/index.js'
 import Services from './screens/services/index.js'
 import SignUp from './screens/SignUp/index.js'
 import SignIn from './screens/SignIn/Index.js'
+import Role from './screens/ChooseRole/Index.js'
 
 const App = () => (
   <Router>
@@ -15,6 +16,7 @@ const App = () => (
       <Route path="/services" element={<Services />} />
       <Route path="/create-account" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
+      <Route path="/role" element={<Role />} />
     </Routes>
   </Router>
 )
