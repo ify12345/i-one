@@ -6,6 +6,8 @@ import Services from './screens/services/index.js'
 import SignUp from './screens/SignUp/index.js'
 import SignIn from './screens/SignIn/Index.js'
 import Role from './screens/ChooseRole/Index.js'
+import ForgetPassword from './screens/forgot-password/Index.js'
+import Verify from './screens/verify/Index.js'
 
 const App = () => (
   <Router>
@@ -17,6 +19,8 @@ const App = () => (
       <Route path="/create-account" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/role" element={<Role />} />
+      <Route path="/forgot-password" element={<ForgetPassword />} />
+      <Route path="/verification" element={<Verify />} />
     </Routes>
   </Router>
 )
