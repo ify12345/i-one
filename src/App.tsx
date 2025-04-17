@@ -8,6 +8,7 @@ import SignIn from './screens/SignIn/Index.js'
 import Role from './screens/ChooseRole/Index.js'
 import ForgetPassword from './screens/forgot-password/Index.js'
 import Verify from './screens/verify/Index.js'
+import ResetPassword from './screens/reset-password/Index.js'
 
 const App = () => (
   <Router>
@@ -21,6 +22,7 @@ const App = () => (
       <Route path="/role" element={<Role />} />
       <Route path="/forgot-password" element={<ForgetPassword />} />
       <Route path="/verification" element={<Verify />} />
+      <Route path="/reset" element={<ResetPassword />} />
     </Routes>
   </Router>
 )
