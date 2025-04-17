@@ -9,10 +9,10 @@ const Home = () => {
     <TwLayout>
       <div className="flex flex-col mx-auto justify-center items-center gap-3 px-5 pt-[44px] lg:pt-[89px]">
         <motion.p
-          variants={fadeIn('left', 0.5)}
+          variants={fadeIn('down', 0.5)}
           initial="hidden"
           whileInView={'show'}
-          viewport={{ once: false, amount: 0.7 }}
+          viewport={{ once: true, amount: 0.7 }}
           className="text-[#000] text-base lg:text-3xl play-fair font-semibold text-center"
         >
           Simplifying 5-A-Side Football Bookings and Team Management
