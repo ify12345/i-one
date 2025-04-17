@@ -24,18 +24,15 @@ const SignIn = () => {
                 <CustomInput type="password" label="Password" name="password" />
 
                 <button
-                  className="w-full bg-primary text-[#007745] py-3 px-4 rounded-md hover:bg-primary-dark transition duration-200 mt-4 sm:mt-6 mb-4 focus:outline-none focus:ring-0"
-                  style={{
-                    boxShadow:
-                      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                  }}
+                  className="w-full bg-primary text-[#007745] py-3 shadow-lg px-4 rounded-md hover:bg-primary-dark transition duration-200 mt-4 sm:mt-6 mb-4 focus:outline-none focus:ring-0"
+                
                 >
-                  Create Account
+                  Log in
                 </button>
 
                 <div className="w-full flex items-center justify-center">
                   <Link
-                    to={''}
+                    to={'/forgot-password'}
                     className="w-full underline flex items-center gap-[2px] text-[14px] sm:text-[16px] justify-center"
                   >
                     Forgot Password
@@ -47,7 +44,7 @@ const SignIn = () => {
                     Have an Account?{' '}
                     <Link
                       className="underline font-bold"
-                      to={'/create-account'}
+                      to={'/register'}
                     >
                       {' '}
                       Sign up Here

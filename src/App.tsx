@@ -4,21 +4,24 @@ import Home from './screens/home/index.js'
 import How from './screens/how/index.js'
 import Services from './screens/services/index.js'
 import SignUp from './screens/SignUp/index.js'
-import SignIn from './screens/SignIn/Index.js'
+
 import Role from './screens/ChooseRole/Index.js'
 import ForgetPassword from './screens/forgot-password/Index.js'
-import Verify from './screens/verify/Index.js'
+
 import ResetPassword from './screens/reset-password/Index.js'
+import SignIn from './screens/SignIn/index.js'
+import Verify from './screens/verify/index.js'
+
 
 const App = () => (
   <Router>
     <Routes>
-     
+  
       <Route path="/" element={<Home />} />
       <Route path="/how-it-works" element={<How />} />
       <Route path="/services" element={<Services />} />
-      <Route path="/create-account" element={<SignUp />} />
-      <Route path="/signin" element={<SignIn />} />
+      <Route path="/register" element={<SignUp />} />
+      <Route path="/sign-in" element={<SignIn />} />
       <Route path="/role" element={<Role />} />
       <Route path="/forgot-password" element={<ForgetPassword />} />
       <Route path="/verification" element={<Verify />} />

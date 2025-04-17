@@ -39,7 +39,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   return (
     <div className="w-full">
       {/* Label */}
-      <label className="block text-sm font-medium text-gray_light mb-1">
+      <label className="block text-sm font-light text-gray_light mb-1">
         {label}
         {required && <span className="text-red-500"> *</span>}
       </label>
