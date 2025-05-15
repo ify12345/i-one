@@ -1,11 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Footer2 from '@/components/Footer2'
-import React, { useRef } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useRef, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import AuthLayout from '../AuthLayout/Index'
+import { useAppDispatch } from '@/redux/store'
+import { showToast } from '@/components/Toast'
+import { verifyOtp } from '@/api/auth'
+
+interface ForgotPasswordFormValues {
+  email: string
+  otp: string
+}
 
 const Verify: React.FC = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const inputsRef = useRef<Array<HTMLInputElement | null>>([])
+  const [loading, setLoading] = useState(false)
+  const emailInput = location.state?.input ?? ''
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -30,6 +43,34 @@ const Verify: React.FC = () => {
     }
   }
 
+  const handleSubmit = () => {
+    const otp = inputsRef.current.map(input => input?.value).join('')
+    if (otp.length !== 5) {
+      showToast({ type: 'error', msg: 'Please enter a valid 5-digit OTP.' })
+      return
+    }
+
+    const payload: ForgotPasswordFormValues = {
+      email: emailInput,
+      otp: otp
+    }
+
+    setLoading(true)
+    dispatch(verifyOtp(payload))
+      .unwrap()
+      .then(response => {
+        setLoading(false)
+        showToast({ type: 'success', msg: response.message })
+        navigate('/reset')
+      })
+      .catch(error => {
+        setLoading(false)
+        const errorMsg = error?.msg || error?.response?.data?.detail
+        showToast({ type: 'error', msg: errorMsg })
+        console.error('Forgot password error:', error)
+      })
+  }
+
   return (
     <AuthLayout hideLeft>
       <div className="w-full min-h-screen">
@@ -44,7 +85,7 @@ const Verify: React.FC = () => {
               </h1>
               <p className="md:text-[16px] text-[12px] text-[#AEAEAE]">
                 A code has been sent to{' '}
-                <span className="text-[black]">abc@gmail.com</span>
+                <span className="text-[black]">{emailInput}</span>
               </p>
             </div>
 
@@ -66,15 +107,19 @@ const Verify: React.FC = () => {
             </div>
 
             <div className="mt-[30px]">
-              <button className="md:max-w-[494px] w-full bg-primary text-[#007745] py-3 px-4 shadow-lg rounded-md hover:bg-primary-dark transition duration-200  focus:outline-none focus:ring-0">
-                Verify
+              <button
+                onClick={handleSubmit}
+                disabled={loading}
+                className="md:max-w-[494px] w-full bg-primary text-[#007745] py-3 px-4 shadow-lg rounded-md hover:bg-primary-dark transition duration-200  focus:outline-none focus:ring-0"
+              >
+                {loading ? 'Verifying...' : 'Verify'}
               </button>
             </div>
+
             <div className="w-full mt-[32px] flex items-center justify-center">
               <p className="w-full flex items-center gap-[2px] font-[400] text-[14px] sm:text-[16px] justify-center">
-                Didnt receive any code?{' '}
-                <Link className="underline text-[#769B8A] " to="">
-                  {' '}
+                Didn’t receive any code?{' '}
+                <Link className="underline text-[#769B8A]" to="">
                   Resend Code
                 </Link>
               </p>

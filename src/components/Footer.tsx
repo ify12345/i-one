@@ -37,14 +37,20 @@ const Footer: React.FC = () => {
         <div className="flex-col flex  justify-between w-full gap-[92px]">
           <div className="flex-col flex gap-2 lg:gap-[22px] justify-center items-center w-full max-w-[364px] mx-auto text-[#fff]">
             <p className="footer-text text-sm">CONVINCED?</p>
-            <p className="text-2xl font-bold text-center">Let's create magic together</p>
+            <p className="text-2xl font-bold text-center">
+              Let's create magic together
+            </p>
             <p className="text-[13px] lg:text-base  font-light text-center">
               Let us unleash our creativity and expertise to create designs that
               deliver extraordinary results.
             </p>
-            <Link to="/" className="text-[#000] bg-primary py-[10px] px-[40px] rounded-md mt-7 lg:mt-0" role="button">
-            Book A Slot Now!
-                </Link>
+            <Link
+              to="/role"
+              className="text-[#000] bg-primary py-[10px] px-[40px] rounded-md mt-7 lg:mt-0"
+              role="button"
+            >
+              Book A Slot Now!
+            </Link>
           </div>
 
           <div className="flex  lg:gap-0 lg:justify-between text-[#667185] text-sm gap-[20px] items-center flex-col lg:flex-row">

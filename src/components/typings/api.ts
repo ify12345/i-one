@@ -59,6 +59,10 @@ export interface forgotPasswordPayload {
   pin?: string
   email?: string
 }
+export interface verifyOtpPayload {
+  email?: string
+  otp?: string
+}
 export interface ErrorResponse {
   msg: string
   status: number

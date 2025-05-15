@@ -39,6 +39,7 @@ export interface RegisterResponse {
   id: string;
   first_name: string;
   last_name: string;
+  nickname?: string;
   email: string;
   role?: Role[]
   is_active: boolean;
@@ -46,6 +47,7 @@ export interface RegisterResponse {
   created_at: string;
   updated_at: string;
   token?: string
+  isAdmin?: boolean;
 }
   export interface Order {
     id: string;

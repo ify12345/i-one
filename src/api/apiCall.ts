@@ -28,7 +28,7 @@ async function apiCall(
     console.log('data', data);
     if (route === 'auth') {
       const {token} = data;
-      const key = 'revas';
+      const key = 'i-one';
       localStorage.setItem(key,token)
     }
     return data;

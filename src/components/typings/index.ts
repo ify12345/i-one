@@ -79,6 +79,7 @@ export interface User {
   businessName?: string | null
   firstName?: string
   lastName?: string
+  nickname?: string;
   fullName?: string
   email?: string
   password?: string
@@ -105,7 +106,8 @@ export interface User {
   outlet?: Outlet
   jobTitle?: null | string
   role?: Role[]
-  token?: string
+  token?: string;
+  isAdmin?: boolean;
 }
 
 export interface Order {

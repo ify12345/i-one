@@ -9,10 +9,10 @@ async function AxiosBase() {
     const token = localStorage.getItem('i-one');
     console.log('Token', token)
     const localBaseUrl = 'http://localhost:4500'; 
-    const productionBaseUrl = 'https://i-one-server.onrender.com';
+    const productionBaseUrl = 'https://i-one-server-fijh.onrender.com';
 
     const axiosInstance = axios.create({
-      baseURL: localBaseUrl,
+      baseURL: productionBaseUrl,
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',

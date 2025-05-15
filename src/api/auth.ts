@@ -5,6 +5,7 @@ import {
   forgotPasswordPayload,
   LoginPayload,
   RegisterPayload,
+  verifyOtpPayload,
 } from '@/components/typings/api';
 import apiCall from './apiCall';
 import { forgotPasswordResponse, LoginResponse, RegisterResponse } from '@/components/typings/apiResponse';
@@ -16,41 +17,21 @@ export const register = createAsyncThunk<
 >('user/register', async (payload, thunkAPI) => {
   const Axios = await AxiosBase()
   console.log('pay', payload)
-  return apiCall(Axios.post('/i-one/user/register', payload), thunkAPI)
-})
-
-export const registerUser = createAsyncThunk<
-  RegisterResponse,
-  RegisterPayload,
-  AsyncThunkConfig
->('users/register', async (payload, thunkAPI) => {
-  const Axios = await AxiosBase()
-  console.log('pay', payload)
-  return apiCall(Axios.post('/api/register', payload), thunkAPI)
+  return apiCall(Axios.post('/i-one/user/register', payload), thunkAPI,'auth')
 })
 
 export const login = createAsyncThunk<
   LoginResponse,
   LoginPayload,
   AsyncThunkConfig
->('account-managers/login', async (payload, thunkAPI) => {
+>('user/login', async (payload, thunkAPI) => {
   const Axios = await AxiosBase()
   console.log('pay', payload)
   return apiCall(
-    Axios.post('/account-managers/login', payload),
+    Axios.post('/i-one/user/auth', payload),
     thunkAPI,
     'auth'
   )
-})
-
-export const UserLogin = createAsyncThunk<
-  LoginResponse,
-  LoginPayload,
-  AsyncThunkConfig
->('/users/login', async (payload, thunkAPI) => {
-  const Axios = await AxiosBase()
-  console.log('pay', payload)
-  return apiCall(Axios.post('/login', payload), thunkAPI, 'auth')
 })
 
 export const forgotPassword = createAsyncThunk<
@@ -60,22 +41,27 @@ export const forgotPassword = createAsyncThunk<
 >('/users/forgot-password', async (payload, thunkAPI) => {
   console.log('pay', payload)
   const Axios = await AxiosBase()
-  return apiCall(Axios.post('/forgot-password', payload), thunkAPI)
+  return apiCall(Axios.post('/i-one/user/forgotPassword', payload), thunkAPI)
 })
 
-export const resetPassword = createAsyncThunk<
+export const verifyOtp = createAsyncThunk<
   forgotPasswordResponse,
-  forgotPasswordPayload,
+  verifyOtpPayload,
+  AsyncThunkConfig
+>('/users/verify-otp', async (payload, thunkAPI) => {
+  console.log('pay', payload)
+  const Axios = await AxiosBase()
+  return apiCall(Axios.post('/i-one/user/verifyOtp', payload), thunkAPI)
+})
+
+export const reset = createAsyncThunk<
+  forgotPasswordResponse,
+  verifyOtpPayload,
   AsyncThunkConfig
 >('/users/reset-password', async (payload, thunkAPI) => {
   console.log('pay', payload)
-  const passwordData = {
-    password: payload.password,
-    confirmPassword: payload.confirmPassword,
-  }
   const Axios = await AxiosBase()
-  return apiCall(
-    Axios.post(`/reset-password/${payload.pin}`, passwordData),
-    thunkAPI
-  )
+  return apiCall(Axios.post('/i-one/user/resetPassword', payload), thunkAPI)
 })
+
+

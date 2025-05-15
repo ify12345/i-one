@@ -1,5 +1,5 @@
 
-import { login, register, registerUser, UserLogin } from '@/api/auth';
+import { login, register } from '@/api/auth';
 import { User } from '@/components/typings';
 
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
@@ -7,19 +7,21 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 interface State {
   user: User;
   profile: object;
+  isRegistered: boolean;
   isAuthenticated: boolean;
   isVerified: boolean;
   isPhoneVerified: boolean;
-  hasProduct: boolean;
+  isAdmin: boolean;
 }
 
 const initialState: State = {
   user: {}, 
   profile:{},
+  isRegistered: false,
   isAuthenticated: false,
   isVerified: false,
   isPhoneVerified: false,
-  hasProduct: false
+  isAdmin: false
 };
 
 export const authSlice = createSlice({
@@ -39,13 +41,7 @@ export const authSlice = createSlice({
       state.user = payload;
       console.log('payload:', payload);
       
-      // state.isAuthenticated = true;
-    });
-    builder.addCase(registerUser.fulfilled, (state, {payload}) => {
-      state.user = payload;
-      console.log('payload:', payload);
-      
-      // state.isAuthenticated = true;
+      // state.isRegistered = true;
     });
     builder
       .addCase(login.pending, state => {
@@ -58,17 +54,7 @@ export const authSlice = createSlice({
         state.isVerified = true;
         state.isAuthenticated = true;
       })
-    builder
-      .addCase(UserLogin.pending, state => {
-        state.isAuthenticated = false;
-        state.isVerified = false;
-      })
-      .addCase(UserLogin.fulfilled, (state, { payload }) => {
-        console.log('payload:', payload.user);
-        state.hasProduct = payload.user.hasRegisteredProduct;
-        state.user = payload.user;
-        state.isAuthenticated = true;
-      })
+
   },
 });
 
