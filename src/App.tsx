@@ -14,6 +14,7 @@ import SignIn from './screens/sign-in/index.js'
 import Verify from './screens/verify/index.js'
 import { useAppSelector } from './redux/store.js'
 import ResetSuccess from './screens/reset-success/index.js'
+import HomeLayout from './components/layouts/HomeLayout.js'
 
 const App = () => {
   const { isAuthenticated, isRegistered } = useAppSelector(state => state.auth)
@@ -35,6 +36,14 @@ const App = () => {
             <Route path="/reset-success" element={<ResetSuccess />} />
           </>
         )}
+
+        {
+          isAuthenticated && (
+            <>
+             <Route path="/" element={<HomeLayout />} />
+            </>
+          )
+        }
       </Routes>
     </Router>
   )
