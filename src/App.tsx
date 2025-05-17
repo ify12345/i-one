@@ -6,7 +6,7 @@ import How from './screens/how/index.js'
 import Services from './screens/services/index.js'
 import SignUp from './screens/sign-up/index.js'
 
-import Role from './screens/ChooseRole/Index.js'
+import Role from './screens/choose-role/Index.js'
 import ForgetPassword from './screens/forgot-password/Index.js'
 
 import ResetPassword from './screens/reset-password/Index.js'

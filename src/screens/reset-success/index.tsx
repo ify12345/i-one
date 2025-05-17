@@ -4,22 +4,15 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import ball from '@/assets/images/success.png'
 
-
 import { useAppDispatch } from '@/redux/store'
-
-
-
 
 const ResetSuccess = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  
 
   return (
     <div className="flex signin-container flex-col min-h-screen">
-
       <div className="flex flex-col xl:flex-row flex-grow w-full">
-
         <div className="hidden xl:flex xl:w-1/2 relative bg-[#F0FFF9] flex-col">
           <div className="flex-1 absolute left-0 right-0 top-0 bottom-0 flex items-center justify-center overflow-hidden">
             <img
@@ -43,13 +36,12 @@ const ResetSuccess = () => {
 
                   <div className="flex flex-col">
                     <h2 className="text-2xl lg:text-5xl leading-[80px] mt-[40px] sm:mt-[70px] font-bold mb-6">
-                    Password Reset Successfully
+                      Password Reset Successfully
                     </h2>
                     <p className="text-[16px] lg:text-3xl text-[#878887] text-[400]">
-                    Redirecting....
+                      Redirecting....
                     </p>
                   </div>
-
                 </div>
               </div>
             </div>

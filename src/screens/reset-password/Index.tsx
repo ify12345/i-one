@@ -60,7 +60,7 @@ const ResetPassword = () => {
   }
 
   return (
-    <div className="w-full min-h-screen">
+   <div className="w-full min-h-screen">
       <div className="h-screen flex justify-center p-6 items-center bg-[#EFFFF8] w-full">
         <div className="bg-[white] rounded-[30px] p-[20px] md:p-[100px] shadow-lg md:max-w-[694px] w-full">
           <h1 className="text-[24px] sm:text-[28px] w-full text-center md:text-[36px] lg:text-[44px] font-extrabold">
@@ -116,9 +116,12 @@ const ResetPassword = () => {
                 </div>
 
                 <div className="flex gap-[12px] mt-[30px] w-full">
-                  <button className="w-full border-[#5C5C5C57] border rounded-[5px] py-3 px-4  transition duration-200 mt-4 sm:mt-6 mb-4 focus:outline-none focus:ring-0">
+                  <Link
+                    to="/forgot-password"
+                    className="w-full flex justify-center border-[#5C5C5C57] border rounded-[5px] py-3 px-4  transition duration-200 mt-4 sm:mt-6 mb-4 focus:outline-none focus:ring-0"
+                  >
                     Cancel
-                  </button>
+                  </Link>
                   <button
                     className="w-full bg-primary text-[#007745] py-3 px-4 rounded-md hover:bg-primary-dark transition duration-200 mt-4 sm:mt-6 mb-4 focus:outline-none focus:ring-0"
                     style={{
