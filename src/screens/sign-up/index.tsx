@@ -73,9 +73,9 @@ const SignUp = () => {
       })
       .catch(err => {
         setLoading(false);
-        console.log(err)
-        const msg = err?.msg || err?.response?.data?.detail;
-        showToast({ type: 'error', msg });
+        console.log("error is", err)
+        const message = err?.msg?.message || err?.msg ;
+        showToast({ type: 'error', msg: message });
       });
   };
 

@@ -22,7 +22,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {!isAuthenticated && (
+        {isAuthenticated && (
           <>
             <Route path="/" element={<Home />} />
             <Route path="/how-it-works" element={<How />} />
@@ -38,7 +38,7 @@ const App = () => {
         )}
 
         {
-          isAuthenticated && (
+          !isAuthenticated && (
             <>
              <Route path="/" element={<HomeLayout />} />
             </>

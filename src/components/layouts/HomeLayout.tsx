@@ -1,35 +1,35 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import * as React from 'react'
-import authImg from '@/assets/images/auth.png'
-import Footer from '../Footer'
+import React from 'react';
+import Header from '../Header';
+import Footer2 from '../Footer2';
+import ioneBg from '../../assets/images/ione-bg.png';
+import Homepage from '@/screens/Homepage';
 
-interface AuthLayoutProps {
-  children?: React.ReactNode
+// Define props interface
+interface HomeLayoutProps {
+  children: React.ReactNode;
 }
-const navigation = [
-  { name: 'Home', id: 1 },
-  { name: 'Schedule', id: 2 },
-  { name: 'Tournament', id: 3 },
-]
 
-const HomeLayout: React.FC<AuthLayoutProps> = () => {
+const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
   return (
-    <div className="overflow-x-hidden w-full m-0">
-      <div className="flex justify-between">
-        ione
-        {navigation.map((item, id) => {
-          return (
-            <button className="font-bold" key={id}>
-              {item.name}
-            </button>
-          )
-        })}
-      </div>
-      {/* <div className="">{getActiveScreen()}</div> */}
-      <Footer />
-      {/* <Polygon initials="IN" team="Team 1"/> */}
-    </div>
-  )
-}
+    <div className="flex flex-col min-h-screen w-full overflow-x-hidden m-0">
+      {/* Header */}
+      <Header />
 
-export default HomeLayout
+      {/* Main Content */}
+      <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full ">
+        {/* <div
+          className="bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${ioneBg})` }}
+        >
+          {children}
+        </div> */}
+        <Homepage />
+      </main>
+
+      {/* Footer */}
+      <Footer2 />
+    </div>
+  );
+};
+
+export default HomeLayout;

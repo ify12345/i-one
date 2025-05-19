@@ -31,6 +31,7 @@
     "react-toastify": "^11.0.5",
     "redux-persist": "^6.0.0",
     "rollup": "^4.29.1",
+    "swiper": "^11.2.6",
     "yup": "^1.6.1"
   },
   "devDependencies": {
