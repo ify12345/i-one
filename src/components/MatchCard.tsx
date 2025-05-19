@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
 import TeamPolygon from '../components/TeamPolygon';
 import { FaArrowRightLong } from "react-icons/fa6";

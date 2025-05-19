@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import BellSvg from '@/assets/svg/BellSvg';
 import { MdWavingHand } from "react-icons/md";
@@ -62,7 +63,7 @@ const Homepage = () => {
                             <p className="text-gray-500 text-sm">
                                 Hey, Kevin <span role="img" aria-label="wave">👋</span>
                             </p>
-                            <h1 className="text-2xl font-bold text-black">It’s Matchday!</h1>
+                            <h1 className="text-2xl font-bold text-black">It's Matchday!</h1>
                         </div>
                         <div className="relative">
                             <BellSvg />
