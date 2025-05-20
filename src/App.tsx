@@ -15,6 +15,11 @@ import Verify from './screens/verify/index.js'
 import { useAppSelector } from './redux/store.js'
 import ResetSuccess from './screens/reset-success/index.js'
 import HomeLayout from './components/layouts/HomeLayout.js'
+import Homepage from './screens/Homepage/index.js'
+import Schedule from './screens/schedule/index.js'
+import Tournaments from './screens/tournaments/index.js'
+import Profile from './screens/profile/index.js'
+import ScheduleDetail from './screens/schedule-detail/index.js'
 
 const App = () => {
   const { isAuthenticated, isRegistered } = useAppSelector(state => state.auth)
@@ -40,7 +45,11 @@ const App = () => {
         {
           !isAuthenticated && (
             <>
-             <Route path="/" element={<HomeLayout />} />
+             <Route path="/" element={<Homepage />} />
+             <Route path="/schedule" element={<Schedule />} />
+             <Route path="/schedule-detail" element={<ScheduleDetail />} />
+             <Route path="/tournament" element={<Tournaments />} />
+             <Route path="/profile" element={<Profile />} />
             </>
           )
         }

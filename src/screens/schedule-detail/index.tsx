@@ -1,10 +1,10 @@
 import HomeLayout from '@/components/layouts/HomeLayout'
 import React from 'react'
 
-export default function Profile() {
+export default function ScheduleDetail() {
   return (
-    <HomeLayout>
-      <div>Profile</div>
+    <HomeLayout activeNavId={2}>
+      <div>ScheduleDetail</div>
     </HomeLayout>
   )
 }
