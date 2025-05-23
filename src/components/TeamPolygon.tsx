@@ -9,7 +9,7 @@ interface TeamPolygonProps {
 const TeamPolygon: React.FC<TeamPolygonProps> = ({ initials, name }) => {
   return (
     <div className="relative flex flex-col items-center">
-      
+      {/* Polygon with team initials */}
       <div
         className="w-16 h-16 bg-cover bg-center bg-no-repeat flex items-center justify-center"
         style={{ backgroundImage: `url(${teamPolygon})` }}

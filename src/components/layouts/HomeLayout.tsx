@@ -3,6 +3,8 @@ import React, { useState, ReactNode, useEffect } from 'react';
 import logo from '@/assets/images/footer-logo.png';
 import ioneBg from '../../assets/images/ione-bg.png';
 import Footer2 from '../Footer2';
+import { useNavigate } from 'react-router-dom';
+
 
 interface HomeLayoutProps {
   children: ReactNode;
@@ -33,19 +35,19 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
     // Get current path
     const path = window.location.pathname;
     setCurrentPath(path);
-    
+
     // Find matching navigation item
     const matchingItem = navigation.find(item => {
       // Exact match for home
       if (item.path === '/' && path === '/') return true;
-      
+
       // For other routes, check if the path starts with the navigation path
       // This handles both exact matches and nested routes
       if (item.path !== '/' && path.startsWith(item.path)) return true;
-      
+
       return false;
     });
-    
+
     // If found, set the active ID
     if (matchingItem) {
       setActiveId(matchingItem.id);
@@ -53,7 +55,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
       setActiveId(0); // No match, don't highlight any item
     }
   }, []);
-  
+
 
   useEffect(() => {
     if (activeNavId !== undefined) {
@@ -61,20 +63,22 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
     }
   }, [activeNavId]);
 
-  
+
   const handleNavClick = (path: string) => {
- 
+
     window.location.href = path;
     setIsMobileMenuOpen(false);
   };
+  const navigate = useNavigate();
+
 
   return (
     <div className="flex flex-col min-h-screen w-full overflow-x-hidden m-0">
-  
+
       <nav className="bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-       
+
             <div className="flex-shrink-0">
               <div onClick={() => handleNavClick('/')} className="cursor-pointer">
                 <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold">
@@ -83,20 +87,22 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
               </div>
             </div>
 
-    
-            <div className="hidden md:flex md:items-center md:space-x-8">
-              {navigation.map((item: NavItem) => (
-                <div
-                  key={item.id}
-                  onClick={() => handleNavClick(item.path)}
-                  className={`text-gray-700 hover:text-primary font-medium px-3 py-2 transition-colors duration-200 cursor-pointer ${
-                    activeId === item.id ? 'text-black font-extrabold border-b-2 border-primary' : ''
-                  }`}
-                >
-                  {item.name}
+            {
+              activeNavId  ? <button onClick={() => navigate(-1)}>Back</button> : (
+                <div className="hidden md:flex md:items-center md:space-x-8">
+                  {navigation.map((item: NavItem) => (
+                    <div
+                      key={item.id}
+                      onClick={() => handleNavClick(item.path)}
+                      className={`text-gray-700 hover:text-primary font-medium px-3 py-2 transition-colors duration-200 cursor-pointer ${activeId === item.id ? 'text-black font-extrabold border-b-2 border-primary' : ''
+                        }`}
+                    >
+                      {item.name}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              )
+            }
 
             <div className="md:hidden">
               <button
@@ -126,9 +132,8 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
               <div
                 key={item.id}
                 onClick={() => handleNavClick(item.path)}
-                className={`text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium cursor-pointer ${
-                  activeId === item.id ? 'text-primary' : ''
-                }`}
+                className={`text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium cursor-pointer ${activeId === item.id ? 'text-primary' : ''
+                  }`}
               >
                 {item.name}
               </div>
@@ -137,7 +142,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
         </div>
       </nav>
 
-      <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+      <main className="flex-grow w-full mx-auto px-4 sm:px-6 lg:px-8 py-8  HomeBackground">
         {children}
       </main>
 
