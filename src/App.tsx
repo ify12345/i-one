@@ -22,15 +22,16 @@ import Profile from './screens/profile/index.js'
 import ScheduleDetail from './screens/schedule-detail/index.js'
 import Lineup from './screens/upcoming-match/index.js'
 import ProfileStats from './screens/profile-stats/index.js'
-import Verify from './screens/verify/Index.js'
+import Verify from './screens/verify/index.js'
+
 
 const App = () => {
-  const { isAuthenticated, isRegistered } = useAppSelector(state => state.auth)
-  // console.log(isAuthenticated)
+  const { isAuthenticated, isRegistered,user } = useAppSelector(state => state.auth)
+  console.log(isAuthenticated,user)
   return (
     <Router>
       <Routes>
-        {isAuthenticated && (
+        {!isAuthenticated && (
           <>
             <Route path="/" element={<Home />} />
             <Route path="/how-it-works" element={<How />} />
@@ -46,7 +47,7 @@ const App = () => {
         )}
 
         {
-          !isAuthenticated && (
+          isAuthenticated && (
             <>
               <Route path="/" element={<Homepage />} />
               <Route path="/schedule" element={<Schedule />} />

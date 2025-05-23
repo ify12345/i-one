@@ -47,8 +47,8 @@ const SignIn = () => {
       .unwrap()
       .then(response => {
         console.log(response)
-        showToast({ type: 'success', msg: response.message })
-        // navigate('/dashboard')
+        showToast({ type: 'success', msg: response.message || 'Login successful' })
+        navigate('/')
       })
       .catch(err => {
         setLoading(false)

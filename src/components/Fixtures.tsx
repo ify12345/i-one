@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import MatchCard from './MatchCard';
 import { Link } from 'react-router-dom'
@@ -39,9 +40,9 @@ const FixturesComponent: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col flex-1 w-full max-w-[657px] h-auto shadow-sm">
+    <div className="flex flex-col w-full lg:w-1/2   h-auto shadow-sm">
       <h2 className="text-lg font-bold text-black mb-3">Upcoming Fixtures</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 max-h-[576px] overflow-y-scroll">
         {matches.map((match, index) => (
             <MatchCard
               key={index}

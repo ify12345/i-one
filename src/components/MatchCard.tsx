@@ -42,7 +42,7 @@ const handleNavigate = () => {
 
   return (
     
-    <button onClick={handleNavigate} className="bg-[#eefff9] p-4 w-[312px]  mx-auto flex flex-col justify-between items-center" >
+    <button onClick={handleNavigate} className="bg-[#eefff9] p-4 w-[312px]  mx-auto flex flex-col justify-between items-center shadow-lg rounded-md hover:scale-95 transition-all duration-300" >
       <div className='flex justify-between items-center gap-7'>
         <p className="text-black text-lg">{currentTime}</p>
         <p className="text-black text-lg mb-2">{matchType}</p>

@@ -94,7 +94,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
                     <div
                       key={item.id}
                       onClick={() => handleNavClick(item.path)}
-                      className={`text-gray-700 hover:text-primary font-medium px-3 py-2 transition-colors duration-200 cursor-pointer ${activeId === item.id ? 'text-black font-extrabold border-b-2 border-primary' : ''
+                      className={` hover:text-primary font-medium px-3 py-2 transition-colors duration-200 cursor-pointer ${activeId === item.id ? 'text-black font-extrabold border-b-2 border-primary' : 'text-gray-400'
                         }`}
                     >
                       {item.name}
@@ -132,7 +132,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
               <div
                 key={item.id}
                 onClick={() => handleNavClick(item.path)}
-                className={`text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium cursor-pointer ${activeId === item.id ? 'text-primary' : ''
+                className={` hover:text-primary block px-3 py-2 text-base font-medium cursor-pointer ${activeId === item.id ? 'text-primary' : 'text-gray-400'
                   }`}
               >
                 {item.name}
