@@ -23,6 +23,7 @@ import ScheduleDetail from './screens/schedule-detail/index.js'
 import Lineup from './screens/upcoming-match/index.js'
 import ProfileStats from './screens/profile-stats/index.js'
 import Verify from './screens/verify/index.js'
+import LivePage from './screens/live-match/index.js'
 
 
 const App = () => {
@@ -56,6 +57,7 @@ const App = () => {
               <Route path="/profile" element={<Profile />} />
               <Route path="/upcoming-match" element={<Lineup />} />
               <Route path="/profile-stats" element={<ProfileStats />} />
+              <Route path="/live-match" element={<LivePage />} />
             </>
           )
         }

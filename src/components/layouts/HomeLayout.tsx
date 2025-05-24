@@ -28,6 +28,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
     { id: 2, name: 'Schedule', path: '/schedule' },
     { id: 3, name: 'Tournament', path: '/tournament' },
     { id: 4, name: 'Profile', path: '/profile' },
+    { id: 5, name: 'Live Match', path: '/live-match' },
   ];
 
   // Detect current path on component mount and window location changes
@@ -75,7 +76,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
   return (
     <div className="flex flex-col min-h-screen w-full overflow-x-hidden m-0">
 
-      <nav className="bg-white shadow-md">
+      <nav className="z-10 bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
 
@@ -88,7 +89,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
             </div>
 
             {
-              activeNavId  ? <button onClick={() => navigate(-1)}>Back</button> : (
+              activeNavId  ? <button onClick={() => navigate(-1)} className='text-gray-500 hidden sm:flex'>Back</button> : (
                 <div className="hidden md:flex md:items-center md:space-x-8">
                   {navigation.map((item: NavItem) => (
                     <div

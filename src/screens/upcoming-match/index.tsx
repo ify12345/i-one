@@ -6,13 +6,14 @@ import MatchDetails from '@/components/MatchDetails'
 
 export default function Lineup() {
     const location = useLocation();
-  const T1 = location.state?.t1 ?? false;
-  const T2 = location.state?.t2 ?? false;
+    const T1 = location.state?.t1 ?? false;
+    const T2 = location.state?.t2 ?? false;
 
     return (
         <HomeLayout activeNavId={1}>
-            <div className='flex flex-col md:flex-row'>
+            <div className='flex flex-col md:flex-row '>
                 <UpcomingMatch team1={T1} team2={T2} />
+                
                 <MatchDetails />
             </div>
         </HomeLayout>

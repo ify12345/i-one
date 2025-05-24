@@ -97,6 +97,7 @@ const Homepage = () => {
         </div>
         <FixturesComponent />
       </div>
+
     </HomeLayout>
   )
 }

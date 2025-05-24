@@ -9,19 +9,19 @@ export default function ProfileStats() {
   return (
     <HomeLayout activeNavId={4}>
       <div className="flex flex-col md:flex-row  gap-14">
-        <div className="bg-white rounded-lg shadow-md p-10 sm:p-8 flex flex-col  max-w-[614px] w-full  overflow-hidden">
+        <div className="bg-white rounded-lg shadow-md  sm:p-8 flex flex-col  max-w-[614px] w-full mx-auto overflow-hidden">
 
           <div className="flex mb-10">
             <h2 className="text-2xl sm:text-3xl font-semibold text-black mb-4">Stats</h2>
           </div>
-          <div className=" grid grid-cols-2 md:grid-cols-3 gap-2">
+          <div className=" grid grid-cols-2 md:grid-cols-3 gap-2 ">
             <TrophySvg />
             <TrophySvg />
             <TrophySvg />
             <TrophySvg />
           </div>
         </div>
-        <div className="flex flex-col gap-7 text-sm sm:text-base max-w-[593px] w-full">
+        <div className="flex flex-col gap-7 text-sm sm:text-base max-w-[593px] w-full mx-auto">
           <div className="flex justify-between gap-4">
             <span className="text-black font-bold text-2xl ">Statistics</span>
             <select className="text-black text-xl font-semibold">

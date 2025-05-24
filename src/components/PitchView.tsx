@@ -1,6 +1,6 @@
 import React from 'react';
 import PlayerCircle from './PlayerCircle'; // Adjust path as needed
-import PitchImage from '@/assets/images/greenPitch.png'; 
+import PitchImage from '@/assets/images/greenPitch.png';
 
 interface Player {
   number: number;
@@ -22,7 +22,10 @@ interface PitchViewProps {
 
 const PitchView: React.FC<PitchViewProps> = ({ teamData }) => {
   return (
-    <div className="relative w-full h-[500px] sm:h-[600px] bg-cover bg-center" style={{ backgroundImage: `url(${PitchImage})` }}>
+    <div
+      className="relative w-full h-[500px] sm:h-[600px] bg-cover bg-center"
+      style={{ backgroundImage: `url(${PitchImage})` }}
+    >
       {/* Goalkeeper */}
       {teamData.goalkeeper.map((player, index) => (
         <div
@@ -30,21 +33,32 @@ const PitchView: React.FC<PitchViewProps> = ({ teamData }) => {
           className="absolute"
           style={{ top: '17%', left: '50%', transform: 'translate(-50%, -50%)' }}
         >
-          <PlayerCircle number={player.number} initials={player.initials} name={player.name} />
+          <PlayerCircle
+            initials={player.number.toString()}
+            name={player.name}
+            showNumberOutside={false}
+            stackNameBelow={true} 
+          />
         </div>
       ))}
+
       {/* Defenders (4 in a 4-3-3 formation) */}
       {teamData.defenders.map((player, index) => (
         <div
           key={`defender-${player.number}-${index}`}
           className="absolute"
           style={{
-            top: '70%',
-            left: `${20 + index * 20}%`, // Spread defenders across the pitch (20%, 40%, 60%, 80%)
+            top: '40%',
+            left: `${25 + index * 45}%`,
             transform: 'translate(-50%, -50%)',
           }}
         >
-          <PlayerCircle number={player.number} initials={player.initials} name={player.name} />
+          <PlayerCircle
+            initials={player.number.toString()}
+            name={player.name}
+            showNumberOutside={false}
+            stackNameBelow={true} 
+          />
         </div>
       ))}
 
@@ -54,12 +68,17 @@ const PitchView: React.FC<PitchViewProps> = ({ teamData }) => {
           key={`midfielder-${player.number}-${index}`}
           className="absolute"
           style={{
-            top: '50%',
-            left: `${25 + index * 25}%`, // Spread midfielders (25%, 50%, 75%)
+            top: '60%',
+            left: `${15 + index * 30}%`,
             transform: 'translate(-50%, -50%)',
           }}
         >
-          <PlayerCircle number={player.number} initials={player.initials} name={player.name} />
+          <PlayerCircle
+            initials={player.number.toString()}
+            name={player.name}
+            showNumberOutside={false}
+            stackNameBelow={true} 
+          />
         </div>
       ))}
 
@@ -68,12 +87,16 @@ const PitchView: React.FC<PitchViewProps> = ({ teamData }) => {
         <div
           key={`forward-${player.number}-${index}`}
           className="absolute"
-          style={{ top: '30%', left: '50%', transform: 'translate(-50%, -50%)' }}
+          style={{ top: '80%', left: '50%', transform: 'translate(-50%, -50%)' }}
         >
-          <PlayerCircle number={player.number} initials={player.initials} name={player.name} />
+          <PlayerCircle
+            initials={player.number.toString()}
+            name={player.name}
+            showNumberOutside={false}
+            stackNameBelow={true} 
+          />
         </div>
       ))}
-      
     </div>
   );
 };
