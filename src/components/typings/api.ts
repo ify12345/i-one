@@ -39,7 +39,9 @@ export interface RegisterPayload {
   email?: string
   password?: string
   phoneNumber?: string
-  location?: string
+  location?: {
+    
+  }
   address?: string
   position?: string
   confirmPassword?: string

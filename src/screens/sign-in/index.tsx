@@ -53,7 +53,7 @@ const SignIn = () => {
       .catch(err => {
         setLoading(false)
         console.log(err)
-        const errorMessage = err?.msg.message || err?.response?.data?.detail
+        const errorMessage = err?.msg || err?.response?.data?.detail
         showToast({ type: 'error', msg: errorMessage })
       })
   }
