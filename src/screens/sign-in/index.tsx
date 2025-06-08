@@ -47,13 +47,13 @@ const SignIn = () => {
       .unwrap()
       .then(response => {
         console.log(response)
-        showToast({ type: 'success', msg: response.message })
-        // navigate('/dashboard')
+        showToast({ type: 'success', msg: response.message || 'Login successful' })
+        navigate('/')
       })
       .catch(err => {
         setLoading(false)
         console.log(err)
-        const errorMessage = err?.msg.message || err?.response?.data?.detail
+        const errorMessage = err?.msg || err?.response?.data?.detail
         showToast({ type: 'error', msg: errorMessage })
       })
   }

@@ -23,6 +23,14 @@ body{
     background-size: cover;
     background-position: center;
   }
+
+  .HomeBackground {
+    width: 100%; 
+    background-image: url('./assets/images/ione-bg.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+  }
   
   /* .custom-radio:not(:checked) + .radio-container .inner-circle {
     background-color: #CCCED4;

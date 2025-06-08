@@ -12,6 +12,7 @@ import ekoPitch from '@/assets/images/pitchImage2.jpg'
 import osapaPitch from '@/assets/images/pitchImage3.jpg'
 import lekkiPitch from '@/assets/images/pitchImage4.jpg'
 import HomeLayout from '@/components/layouts/HomeLayout'
+import { useAppSelector } from '@/redux/store'
 
 //pitches data
 const pitches = [
@@ -53,16 +54,17 @@ const pitches = [
 ]
 
 const Homepage = () => {
+  const { user } = useAppSelector(state => state.auth)
   return (
     <HomeLayout>
-      <div className="flex flex-col md:flex-row gap-6">
-        <div className="flex-1 w-full max-w-[550px] h-auto  rounded-[20px] shadow-md p-6 md:p-[48px_40px] gap-[60px]">
+      <div className="flex flex-col lg:flex-row gap-14 mx-5 2xl:mx-[125px] justify-center items-center">
+        <div className="w-full lg:w-1/2 max-w-[550px] h-auto rounded-[20px] shadow-md p-6 md:p-[48px_40px] gap-[60px] border">
           <div className="max-w-[470px] md:h-[140px] gap-[32px]">
             {/* Greeting Section */}
             <div className="flex justify-between items-center mb-4 ">
               <div>
                 <p className="text-gray-500 text-sm">
-                  Hey, Kevin{' '}
+                  Hey, {user.email}
                   <span role="img" aria-label="wave">
                     👋
                   </span>
@@ -95,6 +97,7 @@ const Homepage = () => {
         </div>
         <FixturesComponent />
       </div>
+
     </HomeLayout>
   )
 }

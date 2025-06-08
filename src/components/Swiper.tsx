@@ -58,12 +58,12 @@ const SwiperComponent: React.FC<SwiperComponentProps> = ({ pitches }) => {
                 style={{ backgroundImage: `url(${pitch.image})` }}
               >
                 <div className="absolute inset-0   rounded-lg flex flex-col justify-end p-4">
-                  <p className=" font-semibold mb-auto">
+                  <p className="text-white font-semibold mb-auto">
                     {pitch.booked ? 'All Match Time Slots Booked' : 'Slots Available'}
                   </p>
                   <h3 className="text-white font-bold text-lg">{pitch.name}</h3>
                   <div className="flex items-center">
-                  <SlLocationPin />
+                  <SlLocationPin className='text-white mr-1' />
                     <p className="text-white text-sm">{pitch.location}</p>
                   </div>
                 </div>

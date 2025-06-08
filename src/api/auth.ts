@@ -28,7 +28,7 @@ export const login = createAsyncThunk<
   const Axios = await AxiosBase()
   console.log('pay', payload)
   return apiCall(
-    Axios.post('/i-one/user/auth', payload),
+    Axios.post('/i-one/auth/user/login', payload),
     thunkAPI,
     'auth'
   )

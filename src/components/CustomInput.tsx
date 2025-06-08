@@ -39,7 +39,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   const inputType = type === 'password' && showPassword ? 'text' : type;
 
  
-  const borderColor = error ? 'border-danger focus:ring-danger' : 'border-primary focus:ring-primary';
+  const borderColor = error ? 'border-danger focus:ring-danger' : 'border-primary focus:ring-primary border';
 
   return (
     <div className="w-full">

@@ -50,7 +50,7 @@ export const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         console.log('payload:', payload);
-        state.user = payload.user;
+        state.user = payload;
         state.isVerified = true;
         state.isAuthenticated = true;
       })

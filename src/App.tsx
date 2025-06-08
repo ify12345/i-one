@@ -11,7 +11,7 @@ import ForgetPassword from './screens/forgot-password/Index.js'
 
 import ResetPassword from './screens/reset-password/Index.js'
 import SignIn from './screens/sign-in/index.js'
-import Verify from './screens/verify/index.js'
+
 import { useAppSelector } from './redux/store.js'
 import ResetSuccess from './screens/reset-success/index.js'
 import HomeLayout from './components/layouts/HomeLayout.js'
@@ -20,14 +20,19 @@ import Schedule from './screens/schedule/index.js'
 import Tournaments from './screens/tournaments/index.js'
 import Profile from './screens/profile/index.js'
 import ScheduleDetail from './screens/schedule-detail/index.js'
+import Lineup from './screens/upcoming-match/index.js'
+import ProfileStats from './screens/profile-stats/index.js'
+import Verify from './screens/verify/index.js'
+import LivePage from './screens/live-match/index.js'
+
 
 const App = () => {
-  const { isAuthenticated, isRegistered } = useAppSelector(state => state.auth)
-  // console.log(isAuthenticated)
+  const { isAuthenticated, isRegistered,user } = useAppSelector(state => state.auth)
+  console.log(isAuthenticated,user)
   return (
     <Router>
       <Routes>
-        {isAuthenticated && (
+        {!isAuthenticated && (
           <>
             <Route path="/" element={<Home />} />
             <Route path="/how-it-works" element={<How />} />
@@ -43,13 +48,16 @@ const App = () => {
         )}
 
         {
-          !isAuthenticated && (
+          isAuthenticated && (
             <>
-             <Route path="/" element={<Homepage />} />
-             <Route path="/schedule" element={<Schedule />} />
-             <Route path="/schedule-detail" element={<ScheduleDetail />} />
-             <Route path="/tournament" element={<Tournaments />} />
-             <Route path="/profile" element={<Profile />} />
+              <Route path="/" element={<Homepage />} />
+              <Route path="/schedule" element={<Schedule />} />
+              <Route path="/schedule-detail" element={<ScheduleDetail />} />
+              <Route path="/tournament" element={<Tournaments />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/upcoming-match" element={<Lineup />} />
+              <Route path="/profile-stats" element={<ProfileStats />} />
+              <Route path="/live-match" element={<LivePage />} />
             </>
           )
         }
