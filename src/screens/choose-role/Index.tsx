@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import RoleLayout from '../RoleLayout/Index'
 import BallSvg from '@/assets/svg/BallSvg'
 import CalendarSvg from '@/assets/svg/CalendarSvg'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const roleOptions = [
   {
@@ -36,7 +36,7 @@ const Role = () => {
 
   return (
     <RoleLayout>
-      <div className="h-screen flex items-center justify-center">
+      <div className="h-screen flex flex-col items-center justify-center">
         <div className="md:max-w-[490px] p-4 sm:p-6 md:p-0 w-full">
           <h1 className="text-[24px] sm:text-[28px] w-full text-left md:text-[36px] lg:text-[44px] font-extrabold">
             i-<span className="text-primary">o</span>ne
@@ -97,6 +97,15 @@ const Role = () => {
               Continue
             </button>
           </div>
+        </div>
+        <div className="w-full flex items-center justify-center">
+          <p className="w-full flex items-center gap-[2px] text-[14px] sm:text-[16px] justify-center">
+            Have an Account?{' '}
+            <Link className="underline font-bold" to={'/sign-in'}>
+              {' '}
+              Login Here
+            </Link>
+          </p>
         </div>
       </div>
     </RoleLayout>

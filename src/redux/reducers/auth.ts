@@ -1,5 +1,5 @@
 
-import { login, register } from '@/api/auth';
+import { getUser, login, register } from '@/api/auth';
 import { User } from '@/components/typings';
 
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
@@ -37,11 +37,14 @@ export const authSlice = createSlice({
     logout: () => ({...initialState}),
   },
   extraReducers(builder) {
+    builder.addCase(getUser.fulfilled, (state, {payload}) => {
+      state.user = payload;
+      console.log('payload:', payload);
+    });
     builder.addCase(register.fulfilled, (state, {payload}) => {
       state.user = payload;
       console.log('payload:', payload);
-      
-      // state.isRegistered = true;
+      state.isRegistered = true;
     });
     builder
       .addCase(login.pending, state => {

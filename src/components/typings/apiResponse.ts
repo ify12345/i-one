@@ -49,6 +49,25 @@ export interface RegisterResponse {
   token?: string
   isAdmin?: boolean;
 }
+
+export interface userResponse {
+    _id: string
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    nickname?: string,
+    address: string,
+    phoneNumber: string,
+    position?: string,
+    isCaptain: boolean,
+    isOwner: boolean,
+    otpVerified: false,
+    location: {
+        type: string,
+        coordinates: [number, number]
+    },
+}
   export interface Order {
     id: string;
     companyName: string;
@@ -75,6 +94,11 @@ export interface RegisterResponse {
     success?: boolean;
   }
 export interface RegisterProductResponse {
+  success: boolean;
+  message: string;
+}
+
+export interface sessionResponse {
   success: boolean;
   message: string;
 }
@@ -129,6 +153,10 @@ export interface LoginResponse {
 }
 
 export interface forgotPasswordResponse {
+  success: boolean;
+  message: string;
+}
+export interface logoutResponse {
   success: boolean;
   message: string;
 }
