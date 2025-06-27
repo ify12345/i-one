@@ -69,6 +69,10 @@ export interface ErrorResponse {
   msg: string
   status: number
 }
+export interface sessionPayload {
+  lat: number
+  lng: number
+}
 
 export interface RegisterProductPayload {
   companyName?: string

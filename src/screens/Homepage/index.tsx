@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
+import React, { useEffect } from 'react'
 import BellSvg from '@/assets/svg/BellSvg'
 import { MdWavingHand } from 'react-icons/md'
 import FilterSvg from '@/assets/svg/FilterSvg'
@@ -12,7 +12,10 @@ import ekoPitch from '@/assets/images/pitchImage2.jpg'
 import osapaPitch from '@/assets/images/pitchImage3.jpg'
 import lekkiPitch from '@/assets/images/pitchImage4.jpg'
 import HomeLayout from '@/components/layouts/HomeLayout'
-import { useAppSelector } from '@/redux/store'
+import { useAppDispatch, useAppSelector } from '@/redux/store'
+import { nearBy } from '@/api/sessions'
+import { getUser } from '@/api/auth'
+
 
 //pitches data
 const pitches = [
@@ -55,6 +58,21 @@ const pitches = [
 
 const Homepage = () => {
   const { user } = useAppSelector(state => state.auth)
+
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+     dispatch(getUser());
+
+    if(user){
+      const payload = {
+        lat: user.location?.coordinates[1] || 6.5244,
+        lng: user.location?.coordinates[0] || 3.3792, 
+      }
+      dispatch(nearBy(payload))
+    }
+  
+
+  },[])
   return (
     <HomeLayout>
       <div className="flex flex-col lg:flex-row gap-14 mx-5 2xl:mx-[125px] justify-center items-center">
@@ -64,7 +82,7 @@ const Homepage = () => {
             <div className="flex justify-between items-center mb-4 ">
               <div>
                 <p className="text-gray-500 text-sm">
-                  Hey, {user.email}
+                  Hey, {user.firstName} {user.lastName}
                   <span role="img" aria-label="wave">
                     👋
                   </span>

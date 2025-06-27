@@ -9,6 +9,7 @@ import { useAppDispatch } from '@/redux/store'
 import { showToast } from '@/components/Toast'
 import { register } from '@/api/auth'
 import GeolocationComponent from '@/components/GetGeoLocation'
+import Loader from '@/components/Loader'
 
 const SignUp = () => {
   const navigate = useNavigate()
@@ -19,8 +20,8 @@ const SignUp = () => {
   const [coordinates, setCoordinates] = useState<[number, number]>([0, 0])
 
   const initialValues = {
-    firstname: '',
-    lastname: '',
+    firstName: '',
+    lastName: '',
     nickname: '',
     email: '',
     password: '',
@@ -30,8 +31,8 @@ const SignUp = () => {
   }
 
   const validationSchema = Yup.object().shape({
-    firstname: Yup.string().required('First name is required'),
-    lastname: Yup.string().required('Last name is required'),
+    firstName: Yup.string().required('First name is required'),
+    lastName: Yup.string().required('Last name is required'),
     nickname: Yup.string().required('Nickname is required'),
     email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string()
@@ -111,20 +112,20 @@ const SignUp = () => {
                 <div className="flex flex-col 2xl:flex-row gap-3">
                   <CustomInput
                     label="First Name"
-                    name="firstname"
+                    name="firstName"
                     type="text"
-                    value={values.firstname}
+                    value={values.firstName}
                     onChange={handleChange}
-                    error={touched.firstname && errors.firstname}
+                    error={touched.firstName && errors.firstName}
                     required
                   />
                   <CustomInput
                     label="Last Name"
-                    name="lastname"
+                    name="lastName"
                     type="text"
-                    value={values.lastname}
+                    value={values.lastName}
                     onChange={handleChange}
-                    error={touched.lastname && errors.lastname}
+                    error={touched.lastName && errors.lastName}
                     required
                   />
                 </div>
@@ -233,6 +234,7 @@ const SignUp = () => {
           </Formik>
         </div>
       </div>
+       <Loader visible={loading}/>
     </AuthLayout>
   )
 }

@@ -6,6 +6,7 @@ import AuthLayout from '../AuthLayout/Index'
 import { useAppDispatch } from '@/redux/store'
 import { showToast } from '@/components/Toast'
 import { verifyOtp } from '@/api/auth'
+import Loader from '@/components/Loader'
 
 interface ForgotPasswordFormValues {
   email: string
@@ -52,7 +53,7 @@ const Verify: React.FC = () => {
 
     const payload: ForgotPasswordFormValues = {
       email: emailInput,
-      otp: otp
+      otp: otp,
     }
 
     setLoading(true)
@@ -127,6 +128,7 @@ const Verify: React.FC = () => {
           </div>
         </div>
       </div>
+      <Loader visible={loading} />
     </AuthLayout>
   )
 }

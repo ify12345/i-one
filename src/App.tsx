@@ -12,7 +12,7 @@ import ForgetPassword from './screens/forgot-password/Index.js'
 import ResetPassword from './screens/reset-password/Index.js'
 import SignIn from './screens/sign-in/index.js'
 
-import { useAppSelector } from './redux/store.js'
+import { useAppDispatch, useAppSelector } from './redux/store.js'
 import ResetSuccess from './screens/reset-success/index.js'
 import HomeLayout from './components/layouts/HomeLayout.js'
 import Homepage from './screens/Homepage/index.js'
@@ -24,11 +24,18 @@ import Lineup from './screens/upcoming-match/index.js'
 import ProfileStats from './screens/profile-stats/index.js'
 import Verify from './screens/verify/index.js'
 import LivePage from './screens/live-match/index.js'
+import { getUser } from './api/auth.js'
+import { AnimatePresence, motion } from 'framer-motion'
+import Preloader from './components/Preloader.js'
 
-
-const App = () => {
-  const { isAuthenticated, isRegistered,user } = useAppSelector(state => state.auth)
-  console.log(isAuthenticated,user)
+const AppContent = () => {
+  const { isAuthenticated, isRegistered, user } = useAppSelector(
+    state => state.auth
+  )
+  const dispatch = useAppDispatch()
+  React.useEffect(() => {
+    dispatch(getUser())
+  }, [dispatch])
   return (
     <Router>
       <Routes>
@@ -47,22 +54,47 @@ const App = () => {
           </>
         )}
 
-        {
-          isAuthenticated && (
-            <>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/schedule" element={<Schedule />} />
-              <Route path="/schedule-detail" element={<ScheduleDetail />} />
-              <Route path="/tournament" element={<Tournaments />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/upcoming-match" element={<Lineup />} />
-              <Route path="/profile-stats" element={<ProfileStats />} />
-              <Route path="/live-match" element={<LivePage />} />
-            </>
-          )
-        }
+        {isAuthenticated && (
+          <>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/schedule" element={<Schedule />} />
+            <Route path="/schedule-detail" element={<ScheduleDetail />} />
+            <Route path="/tournament" element={<Tournaments />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/upcoming-match" element={<Lineup />} />
+            <Route path="/profile-stats" element={<ProfileStats />} />
+            <Route path="/live-match" element={<LivePage />} />
+          </>
+        )}
       </Routes>
     </Router>
+  )
+}
+
+const App = () => {
+  const [loading, setLoading] = React.useState(true)
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 2500)
+
+    return () => clearTimeout(timer)
+  }, [])
+  return (
+    <AnimatePresence mode="wait">
+      {loading ? (
+        <Preloader key="preloader" />
+      ) : (
+        <motion.div
+          key="app"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
+          <AppContent />
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
 export default App

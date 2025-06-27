@@ -3,16 +3,16 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import CustomInput from '@/components/CustomInput'
 import AuthLayout from '../AuthLayout/Index'
-import { login } from '@/api/auth'
+import { getUser, login } from '@/api/auth'
 import { showToast } from '@/components/Toast'
 import { useAppDispatch } from '@/redux/store'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import Loader from '@/components/Loader'
 
 interface FormValues {
   email: string
   password: string
-  confirmpassword: string
 }
 
 const SignIn = () => {
@@ -23,17 +23,13 @@ const SignIn = () => {
   const initialValues: FormValues = {
     email: '',
     password: '',
-    confirmpassword: '',
   }
 
   const loginSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string()
       .required('Required')
-      .matches(/^.*(?=.{4,})/, 'Password must contain at least 4 characters'),
-    confirmpassword: Yup.string()
-      .required('Please confirm your password')
-      .oneOf([Yup.ref('password')], "Passwords don't match"),
+      .matches(/^.*(?=.{4,})/, 'Password must contain at least 4 characters')
   })
 
   const handleSubmit = (values: FormValues) => {
@@ -48,12 +44,13 @@ const SignIn = () => {
       .then(response => {
         console.log(response)
         showToast({ type: 'success', msg: response.message || 'Login successful' })
+        dispatch(getUser())
         navigate('/')
       })
       .catch(err => {
         setLoading(false)
         console.log(err)
-        const errorMessage = err?.msg || err?.response?.data?.detail
+        const errorMessage = err?.msg.message || err?.response?.data?.detail
         showToast({ type: 'error', msg: errorMessage })
       })
   }
@@ -98,16 +95,7 @@ const SignIn = () => {
                       error={touched.password && errors.password}
                       required
                     />
-                    <CustomInput
-                      type="password"
-                      label="Confirm Password"
-                      name="confirmpassword"
-                      value={values.confirmpassword}
-                      onChange={handleChange}
-                      error={touched.confirmpassword && errors.confirmpassword}
-                      required
-                    />
-
+                   
                     <button
                       type="submit"
                       className="w-full bg-primary text-[#007745] py-3 shadow-lg px-4 rounded-md hover:bg-primary-dark transition duration-200 mt-4 sm:mt-6 mb-4 focus:outline-none focus:ring-0"
@@ -140,6 +128,7 @@ const SignIn = () => {
           )}
         </Formik>
       </div>
+      <Loader visible={loading}/>
     </AuthLayout>
   )
 }
