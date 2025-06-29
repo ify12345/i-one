@@ -86,8 +86,8 @@ const SignUp = () => {
 
   return (
     <AuthLayout>
-      <div className="h-screen w-full flex items-center justify-center p-4">
-        <div className="max-w-md w-full">
+      <div className="h-full  w-full flex items-center justify-center p-4">
+        <div className="xl:px-[86px] px-5 md:px-[60px] h-[600px] w-full">
           <h1 className="text-[24px] sm:text-[28px] text-left md:text-[36px] font-extrabold">
             i-<span className="text-primary">o</span>ne
           </h1>
@@ -105,7 +105,7 @@ const SignUp = () => {
                 onSubmit={handleSubmit}
                 className="flex flex-col mt-[30px] sm:mt-[52px] gap-[20px] sm:gap-[28px]"
               >
-                <div className="flex flex-col 2xl:flex-row gap-3">
+                <div className="flex flex-col xl:flex-row gap-3">
                   <CustomInput
                     label="First Name"
                     name="firstname"
@@ -125,7 +125,7 @@ const SignUp = () => {
                     required
                   />
                 </div>
-                <div className="flex flex-col 2xl:flex-row gap-3">
+                <div className="flex flex-col xl:flex-row gap-3">
                   <CustomInput
                     label="Nickname"
                     name="nickname"
@@ -154,7 +154,7 @@ const SignUp = () => {
                 </div>
                 
                 {/* Location section */}
-                <div className="flex flex-col 2xl:flex-row gap-3 items-center">
+                <div className="flex flex-col xl:flex-row gap-3 items-center">
                   <div className='w-full'>
                     <label className="block text-sm font-light text-prim mb-1">Location*</label>
                     <GeolocationComponent setCoordinates={setCoordinates} />
