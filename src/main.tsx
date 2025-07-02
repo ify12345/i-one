@@ -12,7 +12,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* <AnimatedCursor
+    <AnimatedCursor
       innerSize={4}
       outerSize={70}
       outerAlpha={0.2}
@@ -38,7 +38,7 @@ createRoot(document.getElementById('root')!).render(
         'button',
         '.link',
       ]}
-    /> */}
+    />
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <App />
