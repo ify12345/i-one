@@ -13,7 +13,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children, hideLeft = false }) =
       <div className="flex flex-col xl:flex-row flex-grow w-full">
         {/* Left Side - Image Section */}
         {!hideLeft && (
-          <div className="hidden h-screen xl:flex xl:w-1/2 bg-[#F0FFF9] flex-col">
+          <div className="hidden xl:flex xl:w-1/2 bg-[#F0FFF9] flex-col">
             <div className="flex-1 flex items-center justify-center overflow-hidden">
               <img
                 className="w-full h-full max-w-[890px] object-contain"
