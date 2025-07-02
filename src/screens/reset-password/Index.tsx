@@ -8,6 +8,7 @@ import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { showToast } from '@/components/Toast'
 import { reset } from '@/api/auth'
+import Loader from '@/components/Loader'
 
 interface FormValues {
   email: string
@@ -138,6 +139,7 @@ const ResetPassword = () => {
         </div>
       </div>
       <Footer2 />
+      <Loader visible={loading}/>
     </div>
   )
 }

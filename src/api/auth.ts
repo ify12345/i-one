@@ -8,7 +8,7 @@ import {
   verifyOtpPayload,
 } from '@/components/typings/api';
 import apiCall from './apiCall';
-import { forgotPasswordResponse, LoginResponse, RegisterResponse } from '@/components/typings/apiResponse';
+import { forgotPasswordResponse, LoginResponse, logoutResponse, RegisterResponse, userResponse } from '@/components/typings/apiResponse';
 
 export const register = createAsyncThunk<
   RegisterResponse,
@@ -20,6 +20,16 @@ export const register = createAsyncThunk<
   return apiCall(Axios.post('/i-one/user/register', payload), thunkAPI,'auth')
 })
 
+export const getUser = createAsyncThunk<
+  userResponse,
+  void,
+  AsyncThunkConfig
+>('user/getUser', async (_, thunkAPI) => {
+  const Axios = await AxiosBase()
+
+  return apiCall(Axios.get('/i-one/user'), thunkAPI,'auth')
+})
+
 export const login = createAsyncThunk<
   LoginResponse,
   LoginPayload,
@@ -28,7 +38,7 @@ export const login = createAsyncThunk<
   const Axios = await AxiosBase()
   console.log('pay', payload)
   return apiCall(
-    Axios.post('/i-one/user/auth', payload),
+    Axios.post('/i-one/auth/user/login', payload),
     thunkAPI,
     'auth'
   )
@@ -63,5 +73,16 @@ export const reset = createAsyncThunk<
   const Axios = await AxiosBase()
   return apiCall(Axios.post('/i-one/user/resetPassword', payload), thunkAPI)
 })
+
+export const logOut = createAsyncThunk<
+  logoutResponse,
+  void,
+  AsyncThunkConfig
+>('/users/logout', async (_, thunkAPI) => {
+  const Axios = await AxiosBase()
+  return apiCall(Axios.get('/i-one/auth/user/logout'), thunkAPI)
+})
+
+
 
 

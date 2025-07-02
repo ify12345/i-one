@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -24,7 +25,7 @@ const Navbar: React.FC = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <ul className="hidden md:flex gap-10 text-[#ABADAC]">
+            <ul className="hidden md:flex gap-10 text-[#ababad]">
                 <li>
                     <Link to="/" className="text-[#000] text-xs hover:text-primary transition duration-500 ease-in-out" role="button">
                         Home
@@ -44,7 +45,7 @@ const Navbar: React.FC = () => {
 
             {/* Get the App Button (Desktop) */}
             <div className="md:flex items-center gap-3 hidden">
-                <Link to="/" className="text-[#ABADAC] bg-primary py-[10px] px-[40px] rounded-md" role="button">
+                <Link to="/sign-in" className="text-white bg-primary py-[10px] px-[40px] rounded-md hover:scale-95 transition-all duration-300" role="button">
                     Get the app
                 </Link>
             </div>
@@ -103,7 +104,7 @@ const Navbar: React.FC = () => {
                     </li>
                     <li className='w-full justify-center items-center flex px-[36px]'>
                         <Link
-                            to="/"
+                            to="/sign-in"
                             className="text-sm text-[#ABADAC] bg-primary w-full py-3 px-8 rounded-md  justify-center items-center flex"
                             onClick={toggleSideMenu}
                         >
