@@ -13,6 +13,7 @@ interface ForgotPasswordFormValues {
   otp: string
 }
 
+
 export default function Verify() {
   const location = useLocation()
   const navigate = useNavigate()
