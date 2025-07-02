@@ -39,9 +39,7 @@ export interface RegisterPayload {
   email?: string
   password?: string
   phoneNumber?: string
-  location?: {
-    
-  }
+  location?: string
   address?: string
   position?: string
   confirmPassword?: string
@@ -68,10 +66,6 @@ export interface verifyOtpPayload {
 export interface ErrorResponse {
   msg: string
   status: number
-}
-export interface sessionPayload {
-  lat: number
-  lng: number
 }
 
 export interface RegisterProductPayload {

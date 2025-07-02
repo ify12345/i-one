@@ -80,10 +80,10 @@ export interface User {
   firstName?: string
   lastName?: string
   nickname?: string;
-  position?: string
+  fullName?: string
   email?: string
   password?: string
-  phoneNumber?: string
+  phone?: string
   about?: string;
   website?: string
   streetAddress1?: string
@@ -104,13 +104,10 @@ export interface User {
   }
   doesHomeService?: boolean
   outlet?: Outlet
+  jobTitle?: null | string
   role?: Role[]
   token?: string;
   isAdmin?: boolean;
-  location?:{
-    type: string;
-    coordinates: [number, number];
-  }
 }
 
 export interface Order {

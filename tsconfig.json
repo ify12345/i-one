@@ -1,19 +1,24 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
   "compilerOptions": {
-    "baseUrl": ".",
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": ["./src/*"]
     },
-    "noImplicitAny": false,
-    "noUnusedParameters": false,
-    "skipLibCheck": true,
     "allowJs": true,
-    "noUnusedLocals": false,
-    "strictNullChecks": false
-  }
+    "jsx": "react-jsx", // Use react-jsx if React 17+; switch to react if older
+    "target": "esnext",
+    "module": "esnext", // Use esnext for modern module resolution
+    "moduleResolution": "node",
+    "noEmit": true,
+    "esModuleInterop": true, // Ensures compatibility with common JS modules
+    "skipLibCheck": true // Skips type checks for third-party libraries
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "src/**/*"
+  ]
 }

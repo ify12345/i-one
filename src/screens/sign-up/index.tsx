@@ -1,38 +1,38 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react'
-import { useNavigate, useLocation, Link } from 'react-router-dom'
-import { Formik } from 'formik'
-import * as Yup from 'yup'
-import AuthLayout from '../AuthLayout/Index'
-import CustomInput from '@/components/CustomInput'
-import { useAppDispatch } from '@/redux/store'
-import { showToast } from '@/components/Toast'
-import { register } from '@/api/auth'
-import GeolocationComponent from '@/components/GetGeoLocation'
-import Loader from '@/components/Loader'
+import React, { useState } from 'react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import AuthLayout from '../AuthLayout/Index';
+import CustomInput from '@/components/CustomInput';
+import { useAppDispatch } from '@/redux/store';
+import { showToast } from '@/components/Toast';
+import { register } from '@/api/auth';
+import GeolocationComponent from '@/components/GetGeoLocation';
+
 
 const SignUp = () => {
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
-  const location = useLocation()
-  const isOwner = location.state?.owner ?? false
-  const [loading, setLoading] = useState(false)
-  const [coordinates, setCoordinates] = useState<[number, number]>([0, 0])
-
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+  const isOwner = location.state?.owner ?? false;
+  const [loading, setLoading] = useState(false);
+  const [coordinates, setCoordinates] = useState<[number, number]>([0, 0]);
+  
   const initialValues = {
-    firstName: '',
-    lastName: '',
+    firstname: '',
+    lastname: '',
     nickname: '',
     email: '',
     password: '',
     phoneNumber: '',
     address: '',
     position: '',
-  }
+  };
 
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required('First name is required'),
-    lastName: Yup.string().required('Last name is required'),
+    firstname: Yup.string().required('First name is required'),
+    lastname: Yup.string().required('Last name is required'),
     nickname: Yup.string().required('Nickname is required'),
     email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string()
@@ -41,52 +41,48 @@ const SignUp = () => {
     phoneNumber: Yup.string().required('Phone number is required'),
     address: Yup.string().required('Address is required'),
     position: Yup.string().required('Select your position'),
-  })
+  });
 
   const handleSubmit = async (values: typeof initialValues) => {
     if (coordinates[0] === 0 && coordinates[1] === 0) {
-      showToast({
-        type: 'error',
-        msg: 'Please get your location coordinates first',
-      })
-      return
+      showToast({ type: 'error', msg: 'Please get your location coordinates first' });
+      return;
     }
-
+    
     const payload = {
       ...values,
       isOwner,
-      location: {
-        type: 'Point',
-        coordinates,
+      locationInfo: {
+        address: values.address,
+        location: {
+          type: 'Point',
+          coordinates,
+        },
       },
-    }
+    };
     console.log(payload)
-
-    setLoading(true)
+    
+    setLoading(true);
     dispatch(register(payload))
       .unwrap()
       .then(response => {
-        setLoading(false)
+        setLoading(false);
         console.log(response)
-        showToast({
-          type: 'success',
-          msg: response.message || 'User registered successfully',
-        })
+        showToast({ type: 'success', msg: response.message });
         navigate('/sign-in');
       })
       .catch(err => {
-        setLoading(false)
-        console.log('error is', err)
-        const message = err?.msg?.message || err?.msg
-        showToast({ type: 'error', msg: message })
-      })
-  }
+        setLoading(false);
+        console.log("error is", err)
+        const message = err?.msg?.message || err?.msg ;
+        showToast({ type: 'error', msg: message });
+      });
+  };
 
   // Format coordinates for display
-  const formattedCoordinates =
-    coordinates[0] !== 0 && coordinates[1] !== 0
-      ? `[${coordinates[0].toFixed(6)}, ${coordinates[1].toFixed(6)}]`
-      : 'Not set'
+  const formattedCoordinates = coordinates[0] !== 0 && coordinates[1] !== 0
+    ? `[${coordinates[0].toFixed(6)}, ${coordinates[1].toFixed(6)}]`
+    : 'Not set';
 
   return (
     <AuthLayout>
@@ -112,20 +108,20 @@ const SignUp = () => {
                 <div className="flex flex-col 2xl:flex-row gap-3">
                   <CustomInput
                     label="First Name"
-                    name="firstName"
+                    name="firstname"
                     type="text"
-                    value={values.firstName}
+                    value={values.firstname}
                     onChange={handleChange}
-                    error={touched.firstName && errors.firstName}
+                    error={touched.firstname && errors.firstname}
                     required
                   />
                   <CustomInput
                     label="Last Name"
-                    name="lastName"
+                    name="lastname"
                     type="text"
-                    value={values.lastName}
+                    value={values.lastname}
                     onChange={handleChange}
-                    error={touched.lastName && errors.lastName}
+                    error={touched.lastname && errors.lastname}
                     required
                   />
                 </div>
@@ -156,15 +152,13 @@ const SignUp = () => {
                     error={touched.position && errors.position}
                   />
                 </div>
-
+                
                 {/* Location section */}
-                <div className="flex flex-col 2xl:flex-row gap-3 items-center">
-                  <div className="w-full">
-                    <label className="block text-sm font-light text-prim mb-1">
-                      Location*
-                    </label>
+                <div className="flex flex-col xl:flex-row gap-3 items-center">
+                  <div className='w-full'>
+                    <label className="block text-sm font-light text-prim mb-1">Location*</label>
                     <GeolocationComponent setCoordinates={setCoordinates} />
-
+                    
                     {/* <div className="flex items-center mt-2">
                       <span className="text-sm font-medium mr-2">Current coordinates:</span>
                       <span className="text-sm text-gray-600">{formattedCoordinates}</span>
@@ -211,7 +205,7 @@ const SignUp = () => {
                   error={touched.password && errors.password}
                   required
                 />
-
+                
                 <button
                   type="submit"
                   className="w-full bg-primary text-[#007745] py-3 px-4 rounded-md hover:bg-primary-dark transition duration-200 shadow-xl"
@@ -234,9 +228,8 @@ const SignUp = () => {
           </Formik>
         </div>
       </div>
-       <Loader visible={loading}/>
     </AuthLayout>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
