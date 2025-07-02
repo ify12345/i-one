@@ -13,7 +13,7 @@ interface ForgotPasswordFormValues {
   otp: string
 }
 
-const Verify: React.FC = () => {
+export default function Verify() {
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
