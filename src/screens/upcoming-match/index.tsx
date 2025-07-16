@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import HomeLayout from '@/components/layouts/HomeLayout'
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
