@@ -58,15 +58,15 @@ const pitches = [
 
 const Homepage = () => {
   const { user } = useAppSelector(state => state.auth)
-
+ console.log(user)
   const dispatch = useAppDispatch()
   useEffect(() => {
      dispatch(getUser());
 
     if(user){
       const payload = {
-        lat: user.location?.coordinates[1] || 6.5244,
-        lng: user.location?.coordinates[0] || 3.3792, 
+       lng: user.location.coordinates[0],
+       lat: user.location.coordinates[1],
       }
       dispatch(nearBy(payload))
     }
