@@ -71,6 +71,15 @@ export interface Language {
   name: string;
 }
 
+export interface Team {
+  _id: string;
+  session: string;
+  name: string;
+  players: string[];
+  __v: number;
+  updatedAt?: string;
+  initials?: string;
+}
 export type Service = 'home_service' | 'walk_in'
 
 export interface User {

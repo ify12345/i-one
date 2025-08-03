@@ -1,3 +1,4 @@
+import { Team } from ".";
 
 export interface Profile {
   id: number;
@@ -99,8 +100,17 @@ export interface RegisterProductResponse {
 }
 
 export interface sessionResponse {
-  success: boolean;
-  message: string;
+  success?: boolean;
+  message?: string;
+    _id: string;
+  session: string;
+  teamOne: Team;
+  teamTwo: Team;
+  teamOneScore: number;
+  teamTwoScore: number;
+  matchType: string;
+  isStarted: boolean;
+  __v: number;
 }
 export interface deleteOrderResponse {
   success: boolean;

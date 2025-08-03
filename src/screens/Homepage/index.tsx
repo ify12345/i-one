@@ -58,21 +58,21 @@ const pitches = [
 
 const Homepage = () => {
   const { user } = useAppSelector(state => state.auth)
- console.log(user)
+  console.log(user)
   const dispatch = useAppDispatch()
   useEffect(() => {
-     dispatch(getUser());
-
-    if(user){
-      const payload = {
-       lng: user.location.coordinates[0],
-       lat: user.location.coordinates[1],
-      }
-      dispatch(nearBy(payload))
+    dispatch(getUser());
+    const payload = {
+      lng: user.location.coordinates[0],
+      lat: user.location.coordinates[1],
     }
-  
 
-  },[])
+
+    dispatch(nearBy(payload))
+
+
+
+  }, [])
   return (
     <HomeLayout>
       <div className="flex flex-col lg:flex-row gap-14 mx-5 2xl:mx-[125px] justify-center items-center">

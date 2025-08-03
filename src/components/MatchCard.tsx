@@ -8,12 +8,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 interface MatchCardProps {
-  team1: { initials: string; name: string };
-  team2: { initials: string; name: string };
+  teamOne: { initials: string; name: string };
+  teamTwo: { initials: string; name: string };
   matchType: string; // e.g., "Friendly Match"
 }
 
-const MatchCard: React.FC<MatchCardProps> = ({ team1, team2, matchType }) => {
+const MatchCard: React.FC<MatchCardProps> = ({ teamOne, teamTwo, matchType }) => {
   // State to store the current time
   const [currentTime, setCurrentTime] = useState<string>('10:06 AM');
   const navigate = useNavigate()
@@ -37,7 +37,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ team1, team2, matchType }) => {
     return () => clearInterval(interval);
   }, []);
 const handleNavigate = () => {
-  navigate('/upcoming-match', { state: { t1: team1, t2: team2 } })
+  navigate('/upcoming-match', { state: { t1: teamOne, t2: teamTwo } })
 }
 
   return (
@@ -50,9 +50,9 @@ const handleNavigate = () => {
       </div>
 
       <div className="flex items-center space-x-4">
-        <TeamPolygon initials={team1.initials} name={team1.name} />
+        <TeamPolygon initials={teamOne.initials} name={teamOne.name} />
         <span className="text-black font-bold text-lg">VS</span>
-        <TeamPolygon initials={team2.initials} name={team2.name} />
+        <TeamPolygon initials={teamTwo.initials} name={teamTwo.name} />
       </div>
 
 

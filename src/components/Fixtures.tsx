@@ -2,9 +2,13 @@
 import React from 'react';
 import MatchCard from './MatchCard';
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '@/redux/store';
 
 const FixturesComponent: React.FC = () => {
-  // Sample match data (replace with API data in a real app)
+
+  const { sessions } = useAppSelector(state => state.sessions);
+console.log('sessions', sessions);
+
   const matches = [
     {
       team1: { initials: 'KP', name: 'Kano Pillars' },
@@ -43,11 +47,11 @@ const FixturesComponent: React.FC = () => {
     <div className="flex flex-col w-full lg:w-1/2   h-auto shadow-sm">
       <h2 className="text-lg font-bold text-black mb-3">Upcoming Fixtures</h2>
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 max-h-[576px] overflow-y-scroll">
-        {matches.map((match, index) => (
+        {sessions.map((match, index) => (
             <MatchCard
               key={index}
-              team1={match.team1}
-              team2={match.team2}
+              teamOne={match.teamOne}
+              teamTwo={match.teamTwo}
               matchType={match.matchType}
             />
         ))}

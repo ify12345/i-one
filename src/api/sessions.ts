@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import apiCall from "./apiCall"
 import AxiosBase from "./axios"
 import { AsyncThunkConfig, sessionPayload } from "@/components/typings/api"
 import { sessionResponse } from "@/components/typings/apiResponse"
+import { MatchSession } from "@/redux/reducers/sessions"
 
 export const nearBy = createAsyncThunk<
-  sessionResponse,
+  MatchSession[],
   sessionPayload,
   AsyncThunkConfig
 >('/nearby', async (payload, thunkAPI) => {

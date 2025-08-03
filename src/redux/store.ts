@@ -16,6 +16,7 @@ import {
 } from 'redux-persist'
 import languageReducer from './reducers/language'
 import authReducer from './reducers/auth'
+import sessionReducer from './reducers/sessions'
 
 
 const asyncPersistConfig = {
@@ -29,6 +30,7 @@ const persistedAuthReducer = persistReducer(asyncPersistConfig, authReducer)
 const reducers = combineReducers({
   language: persistedLangReducer,
   auth: persistedAuthReducer,
+  sessions: sessionReducer
 })
 
 
