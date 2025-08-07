@@ -9,11 +9,12 @@ export default function Lineup() {
     const location = useLocation();
     const T1 = location.state?.t1 ?? false;
     const T2 = location.state?.t2 ?? false;
+    const matchType = location.state?.matchType ?? false;
 
     return (
         <HomeLayout activeNavId={1}>
             <div className='flex flex-col md:flex-row '>
-                <UpcomingMatch team1={T1} team2={T2} />
+                <UpcomingMatch team1={T1} team2={T2} matchType={matchType} />
                 
                 <MatchDetails />
             </div>

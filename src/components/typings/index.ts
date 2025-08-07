@@ -1,8 +1,6 @@
 
 import { Role } from "./apiResponse";
 
-
-
 export interface Appointment {
   id: number
   status: AppointmentStatus

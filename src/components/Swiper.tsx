@@ -10,11 +10,11 @@ import { SlLocationPin } from "react-icons/sl";
 
 // Define the shape of a pitch item
 interface Pitch {
-  id: number;
+  _id: string;
   name: string;
-  location: string;
+  address: string;
   booked: boolean;
-  image: string; 
+   pitchPhoto: string; 
 }
 
 // Define props for the Swiper component
@@ -23,6 +23,7 @@ interface SwiperComponentProps {
 }
 
 const SwiperComponent: React.FC<SwiperComponentProps> = ({ pitches }) => {
+  // console.log(pitches)
   useEffect(() => {
     // Initialize Swiper
     const swiper = new Swiper('.swiper', {
@@ -51,20 +52,21 @@ const SwiperComponent: React.FC<SwiperComponentProps> = ({ pitches }) => {
         {/* Slides wrapper */}
         <div className="swiper-wrapper">
           {pitches.map((pitch) => (
-            <div key={pitch.id} className="swiper-slide">
+            <div key={pitch._id} className="swiper-slide">
               {/* Pitch Card */}
               <div
                 className="relative bg-cover bg-center bg-no-repeat rounded-lg h-60 w-full"
-                style={{ backgroundImage: `url(${pitch.image})` }}
+                style={{ backgroundImage: `url(${pitch.pitchPhoto})` }}
               >
+               
                 <div className="absolute inset-0   rounded-lg flex flex-col justify-end p-4">
-                  <p className="text-white font-semibold mb-auto">
+                  <p className="text-primary font-semibold mb-auto">
                     {pitch.booked ? 'All Match Time Slots Booked' : 'Slots Available'}
                   </p>
-                  <h3 className="text-white font-bold text-lg">{pitch.name}</h3>
+                  <h3 className="text-primary font-bold text-lg">{pitch.name}</h3>
                   <div className="flex items-center">
-                  <SlLocationPin className='text-white mr-1' />
-                    <p className="text-white text-sm">{pitch.location}</p>
+                  <SlLocationPin className='text-primary mr-1' />
+                    <p className="text-primary text-sm">{pitch.address}</p>
                   </div>
                 </div>
               </div>
