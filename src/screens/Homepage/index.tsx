@@ -28,12 +28,9 @@ const Homepage = () => {
       lat: user.location.coordinates[1],
     }
 
-
     dispatch(nearBy(payload))
     dispatch(nearByLocation(payload))
     
-
-
   }, [])
   return (
     <HomeLayout>
