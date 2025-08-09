@@ -108,7 +108,7 @@ export default function Schedule() {
       time: '20:30',
       minute: "85'",
       team1score: "?",
-      team2score: "?"
+      team2score: "??"
     },
     {
       teams: {
