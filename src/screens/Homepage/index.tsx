@@ -38,7 +38,7 @@ const Homepage = () => {
         <div className=" w-auto h-auto rounded-[20px] shadow-md p-6 md:p-[48px_40px] gap-[60px] border">
           <div className="w-full md:h-[140px] gap-[32px]">
             {/* Greeting Section */}
-            <div className="flex justify-between items-center mb-4 ">
+            <div className="flex justify-between items-center mb-5">
               <div>
                 <p className="text-gray-500 text-sm">
                   Hey, {user.firstName} {user.lastName}
