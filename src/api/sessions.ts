@@ -5,6 +5,7 @@ import AxiosBase from "./axios"
 import { AsyncThunkConfig, sessionPayload } from "@/components/typings/api"
 import { sessionResponse } from "@/components/typings/apiResponse"
 import { MatchSession, pitchSessions } from "@/redux/reducers/sessions"
+import axiosInstance from "./axios"
 
 export const nearBy = createAsyncThunk<
   MatchSession[],
@@ -12,8 +13,14 @@ export const nearBy = createAsyncThunk<
   AsyncThunkConfig
 >('/nearby', async (payload, thunkAPI) => {
   console.log('pay', payload)
-  const Axios = await AxiosBase()
-  return apiCall(Axios.post('/i-one/sessions/nearby-sessions',payload), thunkAPI)
+
+  return apiCall(
+    axiosInstance.get('/i-one/sessions/nearby-sessions', {
+      params: payload, 
+    }),
+    thunkAPI
+  )
+
 })
 
 export const nearByLocation = createAsyncThunk<
@@ -22,10 +29,9 @@ export const nearByLocation = createAsyncThunk<
   AsyncThunkConfig
 >('/nearbyLocation', async (payload, thunkAPI) => {
   console.log('pay', payload)
-  const Axios = await AxiosBase()
 
   return apiCall(
-    Axios.get('/i-one/location/nearby', {
+    axiosInstance.get('/i-one/location/nearby', {
       params: payload, 
     }),
     thunkAPI
