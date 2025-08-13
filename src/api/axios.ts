@@ -1,26 +1,27 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+// axiosBase.ts
 import axios from 'axios';
+import store from '@/redux/store';
+import { logout } from '@/redux/reducers/auth';
 
-async function AxiosBase() {
-  try {
 
-    // const localBaseUrl = 'http://localhost:4500'; 
-    const productionBaseUrl = 'https://i-one-server-v1.onrender.com';
+const productionBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
-    const axiosInstance = axios.create({
-      baseURL: productionBaseUrl,
-      headers: {'Content-Type': 'application/json'},
-      withCredentials: true,
-      timeout: 20000,
-    });
+const axiosInstance = axios.create({
+  baseURL: productionBaseUrl,
+  headers: { 'Content-Type': 'application/json' },
+  withCredentials: true, // Send cookies
+  timeout: 20000,
+});
 
-    return axiosInstance;
-  } catch (error) {
-    console.error('Error retrieving cookie in AxiosBase:', error);
-    throw error;
+// Interceptor: detect expired cookies
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      store.dispatch(logout());
+    }
+    return Promise.reject(error);
   }
-}
+);
 
-export default AxiosBase;
-
-
+export default axiosInstance;

@@ -22,6 +22,7 @@ const LogoutModal = ({ isOpen, onClose }: ContactModalProps) => {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    dispatch(logout())
     logout()
     dispatch(logOut())
       .unwrap()
@@ -30,7 +31,6 @@ const LogoutModal = ({ isOpen, onClose }: ContactModalProps) => {
           type: 'success',
           msg: response.message || 'Logout successful',
         })
-        dispatch(logout())
         navigate('/')
       })
       .catch(err => {

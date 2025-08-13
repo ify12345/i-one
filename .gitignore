@@ -23,5 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
+# Environment variables
+.env
+.env.*   # ignore .env.development, .env.production, etc.
+
 # Local Netlify folder
 .netlify
