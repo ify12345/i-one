@@ -14,8 +14,9 @@ interface ScheduleMatchCardProps {
   team2: { initials: string; name: string }
   time: string // e.g., "Friendly Match"
   team1score: string | number; // Score for team 1
-  team2score: string | number; // Score for team 2
+  team2score: string | number ; // Score for team 2
   minute: string;
+  joined: boolean; // Indicates if the user has joined the match
 }
 
 const ScheduleMatchCard: React.FC<ScheduleMatchCardProps> = ({
@@ -25,39 +26,51 @@ const ScheduleMatchCard: React.FC<ScheduleMatchCardProps> = ({
   team1score,
   team2score,
   minute,
+  joined
 }) => {
   // State to store the current time
   const [currentTime, setCurrentTime] = useState<string>('10:06 AM')
   const navigate = useNavigate()
 
   return (
-    <div className='flex flex-col h-full '>
-    <div className="flex px-[16px] h-full rounded-b-[10px]   w-full items-center bg-[#ECFFF8] ">
+    <div className='flex flex-col  h-full '>
+    <div className="flex lg:px-[16px] h-full  border-b-[1px]   border-b-[#DFDFDF]   w-full items-center bg-[#ECFFF8] ">
       <div className="text-sm   transform -rotate-90 ">
         {time}
       </div>
       <div className='border-l-[1px] mx-[8px] h-[80px]'></div>
-      <div className=" w-full   h-full py-3">
-        <div className='flex w-full flex-col gap- border-[#DFDFDF]'>
+      <div className=" w-full flex   h-full py-3">
+        <div className='flex w-full px-1 md:px-2 relative  flex-col gap-4  border-[#DFDFDF]'>
 
           <TeamPolygon2
             initials={team1.initials}
             name={team1.name}
             time={''}
-            team1score={Number(team1score)}
-            team2score={Number(team2score)}
-            minute={minute}
+            team1score={team1score}
+           
+           
           />
-          <span className='w-full px-10 flex justify-end'>{minute}</span>
+          <span className='w-full absolute top-[45%] right-[48px]  md:right-[72px]  flex  justify-end'>{minute}</span>
+          <div className='absolute top-[25%] md:right-[48px] right-[36px] left-[8px] border-[#DFDFDF]  border-r-[1px]  h-[80px]'></div>
           <TeamPolygon2
             initials={team2.initials}
             time={''}
+              initialss={team1.initials}
+           
             name={team2.name}
-            team1score={Number(team1score)}
-            team2score={Number(team2score)}
-            minute={minute}
+          
+            team2score={team2score}
+         
           />
         </div>
+         <div className='flex items-center'>
+      
+    {/* <div className=' flex px-2 text-sm  flex-col '>
+      {joined ? <p className='text-[#00E082] transform -rotate-90'>Joined</p> : <div> <p>{team1score}</p>
+      <p>{team2score}</p> </div>}
+     
+      </div> */}
+      </div>
       </div>
       </div>
     </div>

@@ -12,9 +12,18 @@ import TeamPolygon2 from '@/components/TeamPolygon2'
 import { time } from 'console'
 import ScheduleMatchCard from '@/components/ScheduleMatchCard'
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa'
+import DropdownSvg from '@/assets/svg/DropdownSvg'
+import Dropdown2Svg from '@/assets/svg/Dropdown2Svg'
+import PlusSvg from '@/assets/svg/PlusSvg'
 
 export default function Schedule() {
-  const [expanded, setExpanded] = useState(false);
+  const [expandedAll, setExpandedAll] = useState<Record<string, boolean>>({
+    'VI Team': false,
+    'Turf Furies': false,
+    'Eko Kings': false
+  });
+  const [expandedTournaments, setExpandedTournaments] = useState<Record<string, boolean>>({});
+  const [expandedFriendlies, setExpandedFriendlies] = useState<Record<string, boolean>>({});
   const [dates, setDates] = useState<
     Array<{
       id: number
@@ -65,6 +74,7 @@ export default function Schedule() {
     setActiveTab(tab)
     navigate(`${tab}`) // Update URL
   }
+
   const match = [
     {
       teams: {
@@ -108,7 +118,7 @@ export default function Schedule() {
       time: '20:30',
       minute: "85'",
       team1score: "?",
-      team2score: "??"
+      team2score: "?"
     },
     {
       teams: {
@@ -134,11 +144,105 @@ export default function Schedule() {
     },
   ]
 
+  // Group matches by team for All tab
+  const groupedMatchesAll = [
+    {
+      teamName: 'VI Team',
+      teamInitials: 'VI',
+      matches: match.filter(m => 
+        m.teams.team1.name === 'Kano Pillars' || 
+        m.teams.team2.name === 'Kano Pillars'
+      ),
+     
+    },
+    {
+      teamName: 'Turf Furies',
+      teamInitials: 'TF',
+      matches: match.filter(m => 
+        m.teams.team1.name === 'Turf Furies' || 
+        m.teams.team2.name === 'Turf Furies'
+      )
+    },
+    {
+      teamName: 'Eko Kings',
+      teamInitials: 'EK',
+      matches: match.filter(m => 
+        m.teams.team1.name === 'Eko Kings' || 
+        m.teams.team2.name === 'Eko Kings'
+      )
+    }
+  ];
+
+  // Group matches by team for Tournaments tab (non-friendly matches)
+  const groupedMatchesTournaments = [
+    {
+      teamName: 'Turf Furies',
+      teamInitials: 'TF',
+      matches: match.filter(m => 
+        (m.teams.team1.name === 'Turf Furies' || 
+         m.teams.team2.name === 'Turf Furies') &&
+        m.teams.matchType !== 'Friendly Match'
+      )
+    },
+    {
+      teamName: 'Lekki Oscroh',
+      teamInitials: 'LO',
+      matches: match.filter(m => 
+        (m.teams.team1.name === 'Lekki Oscroh' || 
+         m.teams.team2.name === 'Lekki Oscroh') &&
+        m.teams.matchType !== 'Friendly Match'
+      )
+    }
+  ];
+
+  // Group matches by team for Friendlies tab
+  const groupedMatchesFriendlies = [
+    {
+      teamName: 'Kano Pillars',
+      teamInitials: 'KP',
+      matches: match.filter(m => 
+        (m.teams.team1.name === 'Kano Pillars' || 
+         m.teams.team2.name === 'Kano Pillars') &&
+        m.teams.matchType === 'Friendly Match'
+      )
+    },
+    {
+      teamName: 'Eko Kings',
+      teamInitials: 'EK',
+      matches: match.filter(m => 
+        (m.teams.team1.name === 'Eko Kings' || 
+         m.teams.team2.name === 'Eko Kings') &&
+        m.teams.matchType === 'Friendly Match'
+      )
+    }
+  ];
+
+  const toggleAll = (teamName: string) => {
+    setExpandedAll(prev => ({
+      ...prev,
+      [teamName]: !prev[teamName]
+    }));
+  };
+
+  const toggleTournaments = (teamName: string) => {
+    setExpandedTournaments(prev => ({
+      ...prev,
+      [teamName]: !prev[teamName]
+    }));
+  };
+
+  const toggleFriendlies = (teamName: string) => {
+    setExpandedFriendlies(prev => ({
+      ...prev,
+      [teamName]: !prev[teamName]
+    }));
+  };
+
   return (
     <HomeLayout>
       <div className="flex flex-col lg:flex-row gap-[54px] lg:px-[80px] w-full">
-        <div className="lg:w-5/12 w-full">
-          <div className="w-full bg-white border-[1px] p-[40px] h-[308px] rounded-[20px] shadow-md border-[#00E0821A]">
+        <div className="lg:w-5/12 h-full w-full">
+          <div className="w-full bg-white border-[1px]  p-[40px] min-h-[308px] rounded-[20px] shadow-md border-[#00E0821A]">
             <div className="flex w-full items-center justify-between">
               <h1 className="font-[600] text-[20px] lg:text-[32px]">Match Schedule</h1>
               <Calendar2Svg />
@@ -157,7 +261,7 @@ export default function Schedule() {
                     isActive={item.isToday}
                     onClick={() => { }}
                   />
-                  <span className="text-sm text-gray-600">{item.dayName}</span>
+                 
                   {item.isToday && (
                     <span className="text-xs flex font-medium text-[#00E082]">
                       Today
@@ -166,11 +270,14 @@ export default function Schedule() {
                 </div>
               ))}
             </div>
+            <Link to='/schedule-detail' className='w-full mt-[32px] flex items-center rounded-[5px] border-[1px] border-[#7D7D7D] h-[44px]'>
+              <button className='text-[16px] px-[21px] flex justify-between items-center text-[#696969] w-full '>New Tournament? <PlusSvg/></button>
+            </Link>
           </div>
         </div>
 
         <div className="lg:w-7/12 w-full">
-          <div className="flex w-full mb-4 gap-[8px] ">
+          <div className="flex justify-between md:max-w-[300px] w-full mb-4 gap-[8px] ">
             <Link
               to="?all"
               className={`rounded-[3px] py-[8px] px-[18px]  ${activeTab === 'all' ? 'bg-[#00E082] text-white' : 'bg-gray-200'}`}
@@ -195,66 +302,147 @@ export default function Schedule() {
           </div>
 
           {/* Dynamic Content Area */}
-          <div className=" p-6 rounded-[20px] shadow-md border-[#00E0821A]">
+          <div className="mt-[28px]">
             {activeTab === 'all' && (
-              <div className=''>
-                <h3 className="font-semibold text-lg mb-4">All Matches</h3>
-
-                <div className="bg-mint-100 rounded-md   py-2">
-                  <div className={`flex items-center bg-[#ECFFF8] h-full border-b-2 px-[36px]  py-[20px] ${expanded ? 'border-[#DFDFDF]' : 'border-green-500 rounded-b-[10px]'}  justify-between cursor-pointer`} onClick={() => setExpanded(!expanded)}>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-6 h-6 bg-green-400 text-white text-xs font-bold rounded-full flex items-center justify-center">
-                        VI
+              <div className='space-y-4'>
+               
+                {groupedMatchesAll.map((teamSchedule) => (
+                  <div key={teamSchedule.teamName} className="bg-mint-100 rounded-md overflow-hidden">
+                    <div 
+                      className={`flex relative items-center bg-[#ECFFF8] h-full border-b-2 px-[13px] md:px-[48px]  ${
+                        expandedAll[teamSchedule.teamName] ? 'border-[#DFDFDF]' : 'border-green-500 rounded-b-[10px]'
+                      } justify-between cursor-pointer`} 
+                      onClick={() => toggleAll(teamSchedule.teamName)}
+                    >
+                      <div className="flex  items-center  space-x-3">
+                        <div className="w-6 h-6 bg-green-400 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                          {teamSchedule.teamInitials}
+                        </div>
+                        <h2 className="font-semibold text-lg">{teamSchedule.teamName}</h2>
                       </div>
-                      <h2 className="font-semibold text-lg">VI Team</h2>
+                      <div className='flex relative gap-[16px] justify-center items-center'>
+                      <div className='border-l px-[12px] md:px-[8px] h-[70px] py-0 border-[#DFDFDF]'></div>
+                      <div className="text-xl w-full absolute left-[25%] md:left-[130%] r  ">
+                       <p className='flex  items-center justify-center'>{expandedAll[teamSchedule.teamName] ? <DropdownSvg/> : <Dropdown2Svg/>}</p>
+                      </div>
+                      </div>
+                    
                     </div>
-                    <div className='border-l h-auto  border-[#DFDFDF]'></div>
-                    <div className="text-xl px-2">{expanded ? <FaArrowUp /> : <FaArrowDown />}</div>
+
+                    {expandedAll[teamSchedule.teamName] && (
+                      <div className='border-b-2 border-b-green-500 '>
+                        <div className="flex flex-col">
+                          {teamSchedule.matches.map((match, idx) =>(
+                            <ScheduleMatchCard
+                              key={idx}
+                              team1={match.teams.team1}
+                              team2={match.teams.team2}
+                              time={match.time}
+                              minute={match.minute}
+                              team1score={match.team1score}
+                              team2score={match.team2score}
+                              joined={teamSchedule.joined}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-
-                  {expanded && (
-                    <div className='border-b-2 border-b-green-500 rounded-b-[10px] '>
-                      <div className=" flex flex-col gap-4 h-full     ">
-                        {match.map((match, idx) => (
-                          <ScheduleMatchCard
-                            key={idx}
-                            team1={match.teams.team1}
-                            team2={match.teams.team2}
-                            time={match.time}
-                            minute={match.minute}
-                            team1score={match.team1score}
-                            team2score={match.team2score}
-
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-            {activeTab === 'tournaments' && (
-              <div>
-                <h3 className="font-semibold text-lg mb-4">
-                  Tournament Matches
-                </h3>
-                {match.map((match, idx) => (
-                  <ScheduleMatchCard
-                    key={idx}
-                    team1={match.teams.team1}
-                    team2={match.teams.team2}
-                    time={match.time}
-                    minute={match.minute}
-                    team1score={match.team1score}
-                    team2score={match.team2score}
-                  />
                 ))}
               </div>
             )}
+
+            {activeTab === 'tournaments' && (
+              <div className='space-y-4'>
+             
+                {groupedMatchesTournaments.map((teamSchedule) => (
+                  <div key={teamSchedule.teamName} className="bg-mint-100 rounded-md overflow-hidden">
+                    <div 
+                      className={`flex items-center bg-[#ECFFF8] h-full border-b-2 px-[13px] md:px-[48px] ${
+                        expandedTournaments[teamSchedule.teamName] ? 'border-[#DFDFDF]' : 'border-green-500 rounded-b-[10px]'
+                      } justify-between cursor-pointer`} 
+                      onClick={() => toggleTournaments(teamSchedule.teamName)}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <div className="w-6 h-6 bg-green-400 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                          {teamSchedule.teamInitials}
+                        </div>
+                        <h2 className="font-semibold text-lg">{teamSchedule.teamName}</h2>
+                      </div>
+                       <div className='flex relative gap-[16px] justify-center items-center'>
+                      <div className='border-l px-[12px] md:px-[8px] h-[70px] py-0 border-[#DFDFDF]'></div>
+                      <div className="text-xl w-full absolute left-[25%] md:left-[130%]   ">
+                       <p className='flex  items-center justify-center'>{expandedTournaments[teamSchedule.teamName] ? <DropdownSvg/> :  <Dropdown2Svg/>}</p>
+                      </div>
+                      </div>
+                    </div>
+
+                    {expandedTournaments[teamSchedule.teamName] && (
+                      <div className='border-b-2 border-b-green-500 '>
+                        <div className="flex flex-col">
+                          {teamSchedule.matches.map((match, idx) => (
+                            <ScheduleMatchCard
+                              key={idx}
+                              team1={match.teams.team1}
+                              team2={match.teams.team2}
+                              time={match.time}
+                              minute={match.minute}
+                              team1score={match.team1score}
+                              team2score={match.team2score}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
             {activeTab === 'friendlies' && (
-              <div>
-                <h3 className="font-semibold text-lg mb-4">Friendly Matches</h3>
-                {/* Add your friendly matches content here */}
+              <div className='space-y-4'>
+              
+                {groupedMatchesFriendlies.map((teamSchedule) => (
+                  <div key={teamSchedule.teamName} className="bg-mint-100 rounded-md overflow-hidden">
+                    <div 
+                      className={`flex items-center bg-[#ECFFF8] h-full border-b-2 px-[13px] md:px-[48px]  ${
+                        expandedFriendlies[teamSchedule.teamName] ? 'border-[#DFDFDF]' : 'border-green-500 rounded-b-[10px]'
+                      } justify-between cursor-pointer`} 
+                      onClick={() => toggleFriendlies(teamSchedule.teamName)}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <div className="w-6 h-6 bg-green-400 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                          {teamSchedule.teamInitials}
+                        </div>
+                        <h2 className="font-semibold text-lg">{teamSchedule.teamName}</h2>
+                      </div>
+                     <div className='flex relative gap-[16px] justify-center items-center'>
+                      <div className='border-l px-[12px] md:px-[8px] h-[70px] py-0 border-[#DFDFDF]'></div>
+                      <div className="text-xl w-full absolute left-[25%] md:left-[130%]   ">
+                       <p className='flex  items-center justify-center'>{expandedFriendlies[teamSchedule.teamName] ? <DropdownSvg/> :  <Dropdown2Svg/>}</p>
+                      </div>
+                      </div>
+                    </div>
+
+                    {expandedFriendlies[teamSchedule.teamName] && (
+                      <div className='border-b-2 border-b-green-500 '>
+                        <div className="flex flex-col">
+                          {teamSchedule.matches.map((match, idx) => (
+                            <ScheduleMatchCard
+                              key={idx}
+                              team1={match.teams.team1}
+                              team2={match.teams.team2}
+                              time={match.time}
+                              minute={match.minute}
+                              team1score={match.team1score}
+                              team2score={match.team2score}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             )}
           </div>

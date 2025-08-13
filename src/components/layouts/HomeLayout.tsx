@@ -27,8 +27,9 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
     { id: 1, name: 'Home', path: '/' },
     { id: 2, name: 'Schedule', path: '/schedule' },
     { id: 3, name: 'Tournament', path: '/tournament' },
-    { id: 4, name: 'Profile', path: '/profile' },
+    // { id: 4, name: 'Profile', path: '/profile' },
     { id: 5, name: 'Live Match', path: '/live-match' },
+
   ];
 
   // Detect current path on component mount and window location changes

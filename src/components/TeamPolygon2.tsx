@@ -9,9 +9,10 @@ interface TeamPolygon2Props {
   team1score: number;
   team2score: number;
   minute: string; 
+  joined?: boolean; // Optional prop to indicate if the user has joined the match
 }
 
-const TeamPolygon2: React.FC<TeamPolygon2Props> = ({ initials, name, time, team1score, minute, team2score }) => {
+const TeamPolygon2: React.FC<TeamPolygon2Props> = ({ initials, name, time, team1score, minute, joined, team2score }) => {
   return (
     <div className='relative flex items-center justify-between w-full'>
     <div className=" flex  w-full gap-3 items-center">
@@ -28,7 +29,8 @@ const TeamPolygon2: React.FC<TeamPolygon2Props> = ({ initials, name, time, team1
     </div>
     <div className='flex items-center'>
       <p>{minute}</p>
-    <div className=' flex px-2 flex-col '>
+    <div className=' flex px-2 text-sm  flex-col '>
+      {}
       <p>{team1score}</p>
       <p>{team2score}</p>
       </div>

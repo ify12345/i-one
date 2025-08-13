@@ -63,7 +63,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
             disabled={disabled}
             className={`w-full border py-[10px] px-2 rounded-md shadow-lg focus:outline-none focus:border-transparent bg-[#fff] ${borderColor} ${className}`}
           >
-            <option value="" disabled>
+            <option value="">
               {placeholder || 'Select an option'}
             </option>
             {options.map((option) => (

@@ -1,6 +1,6 @@
 import React from 'react';
-import activePolygonImage from '@/assets/images/Polygon 5.png';
-import inactivePolygonImage from '@/assets/images/Polygon 5 (1).png';
+import activePolygonImage from '@/assets/images/activepolygon.png';
+import inactivePolygonImage from '@/assets/images/inactivepolygon.png';
 
 interface CalendarPolygonProps {
   id: number;
