@@ -341,7 +341,7 @@ export default function Schedule() {
                               minute={match.minute}
                               team1score={match.team1score}
                               team2score={match.team2score}
-                              joined={teamSchedule.joined}
+                              joined={false}
                             />
                           ))}
                         </div>
@@ -389,6 +389,7 @@ export default function Schedule() {
                               minute={match.minute}
                               team1score={match.team1score}
                               team2score={match.team2score}
+                              joined={false}
                             />
                           ))}
                         </div>
@@ -436,6 +437,7 @@ export default function Schedule() {
                               minute={match.minute}
                               team1score={match.team1score}
                               team2score={match.team2score}
+                              joined={false}
                             />
                           ))}
                         </div>
