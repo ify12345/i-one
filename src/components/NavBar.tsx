@@ -50,16 +50,7 @@ const Navbar: React.FC = () => {
           How it Works
           </NavLink>
         </li>
-        <li>
-           <NavLink
-            to="/"
-            className={({ isActive }) =>
-              ` text-xs hover:text-primary transition duration-500 ease-in-out ${isActive ? 'text-primary' : 'text-primaryLight'}`
-            }
-          >
-          Home
-          </NavLink>
-        </li>
+       
       </ul>
 
       {/* Get the App Button (Desktop) */}
