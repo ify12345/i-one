@@ -50,30 +50,34 @@ const Navbar: React.FC = () => {
                 </Link>
             </div>
 
-            {/* Hamburger Button */}
-            <button id="menu-btn" className="block md:hidden" onClick={toggleSideMenu}>
-                {isSideMenuOpen ? (
-                    <IoClose size={28} className="text-primary relative z-50" />
-                ) : (
-                    <GiHamburgerMenu size={24} className="text-primary" />
+            <button id="menu-btn" className="block md:hidden " onClick={toggleSideMenu}>
+                {!isSideMenuOpen && (
+                 <GiHamburgerMenu size={24} className="text-primary " />
                 )}
             </button>
 
-            {/* Overlay */}
             {isSideMenuOpen && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-40"
+                    className="fixed inset-0 bg-black bg-opacity-50"
                     onClick={toggleSideMenu}
                 />
             )}
 
-            {/* Side Navigation */}
             <div
                 id="side-menu"
-                className={`fixed top-0 left-0 h-full bg-[#fff] md:hidden shadow-lg transform ${
-                    isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
-                } transition-transform duration-300 z-30 w-full p-5`}
+                className={`fixed top-0 left-0 h-full bg-[#fff] md:hidden shadow-lg transform ${isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
+                    } transition-transform duration-300 z-30 w-full p-5`}
             >
+                 <button id="menu-btn" className="block md:hidden " onClick={toggleSideMenu}>
+
+                 {isSideMenuOpen && ( 
+                 
+                    <IoClose size={28} className="text-primary z-50 absolute right-5" />
+                )}
+
+                 </button>
+
+
                 <ul className="flex flex-col gap-5 text-[#ABADAC] w-full h-full justify-center items-center">
                     <li>
                         <Link
@@ -105,7 +109,7 @@ const Navbar: React.FC = () => {
                     <li className='w-full justify-center items-center flex px-[36px]'>
                         <Link
                             to="/sign-in"
-                            className="text-sm text-[#ABADAC] bg-primary w-full py-3 px-8 rounded-md  justify-center items-center flex"
+                            className="text-sm text-black bg-primary w-full py-3 px-8 rounded-md  justify-center items-center flex"
                             onClick={toggleSideMenu}
                         >
                             Get the app
