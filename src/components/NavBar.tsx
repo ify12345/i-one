@@ -64,75 +64,75 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
 
-      {/* Hamburger Button */}
-      <button
-        id="menu-btn"
-        className="block md:hidden"
-        onClick={toggleSideMenu}
-      >
-        {isSideMenuOpen ? (
-          <IoClose size={28} className="text-primary relative z-50" />
-        ) : (
-          <GiHamburgerMenu size={24} className="text-primary" />
-        )}
-      </button>
+            <button id="menu-btn" className="block md:hidden " onClick={toggleSideMenu}>
+                {!isSideMenuOpen && (
+                 <GiHamburgerMenu size={24} className="text-primary " />
+                )}
+            </button>
 
-      {/* Overlay */}
-      {isSideMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
-          onClick={toggleSideMenu}
-        />
-      )}
+            {isSideMenuOpen && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50"
+                    onClick={toggleSideMenu}
+                />
+            )}
 
-      {/* Side Navigation */}
-      <div
-        id="side-menu"
-        className={`fixed top-0 left-0 h-full bg-[#fff] md:hidden shadow-lg transform ${
-          isSideMenuOpen ? 'translate-x-0' : '-translate-x-full'
-        } transition-transform duration-300 z-30 w-full p-5`}
-      >
-        <ul className="flex flex-col gap-5 text-[#ABADAC] w-full h-full justify-center items-center">
-          <li>
-            <Link
-              to="/"
-              className="text-[#000] text-sm hover:text-primary transition duration-500 ease-in-out"
-              onClick={toggleSideMenu}
+            <div
+                id="side-menu"
+                className={`fixed top-0 left-0 h-full bg-[#fff] md:hidden shadow-lg transform ${isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
+                    } transition-transform duration-300 z-30 w-full p-5`}
             >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/how-it-works"
-              className="text-sm hover:text-primary transition duration-500 ease-in-out"
-              onClick={toggleSideMenu}
-            >
-              How It Works
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/services"
-              className="text-sm hover:text-primary transition duration-500 ease-in-out"
-              onClick={toggleSideMenu}
-            >
-              Become a Partner
-            </Link>
-          </li>
-          <li className="w-full justify-center items-center flex px-[36px]">
-            <Link
-              to="/sign-in"
-              className="text-sm text-[#ABADAC] bg-primary w-full py-3 px-8 rounded-md  justify-center items-center flex"
-              onClick={toggleSideMenu}
-            >
-              Get the app
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  )
-}
+                 <button id="menu-btn" className="block md:hidden " onClick={toggleSideMenu}>
+
+                 {isSideMenuOpen && ( 
+                 
+                    <IoClose size={28} className="text-primary z-50 absolute right-5" />
+                )}
+
+                 </button>
+
+
+                <ul className="flex flex-col gap-5 text-[#ABADAC] w-full h-full justify-center items-center">
+                    <li>
+                        <Link
+                            to="/"
+                            className="text-[#000] text-sm hover:text-primary transition duration-500 ease-in-out"
+                            onClick={toggleSideMenu}
+                        >
+                            Home
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/how-it-works"
+                            className="text-sm hover:text-primary transition duration-500 ease-in-out"
+                            onClick={toggleSideMenu}
+                        >
+                            How It Works
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/services"
+                            className="text-sm hover:text-primary transition duration-500 ease-in-out"
+                            onClick={toggleSideMenu}
+                        >
+                            Become a Partner
+                        </Link>
+                    </li>
+                    <li className='w-full justify-center items-center flex px-[36px]'>
+                        <Link
+                            to="/sign-in"
+                            className="text-sm text-black bg-primary w-full py-3 px-8 rounded-md  justify-center items-center flex"
+                            onClick={toggleSideMenu}
+                        >
+                            Get the app
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    );
+};
 
 export default Navbar
