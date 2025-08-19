@@ -46,9 +46,9 @@ const ScheduleMatchCard: React.FC<ScheduleMatchCardProps> = ({
               initials={team1.initials}
               name={team1.name}
               time={''}
-              team1score={Number(team1score)}
-              team2score={Number(team2score)}
-              minute={minute}
+              team1score={team1score}
+           
+             
             />
             <span className='w-full absolute top-[45%] right-[48px]  md:right-[72px]  flex  justify-end'>{minute}</span>
             <div className='absolute top-[25%] md:right-[48px] right-[36px] left-[8px] border-[#DFDFDF]  border-r-[1px]  h-[80px]'></div>
@@ -56,9 +56,9 @@ const ScheduleMatchCard: React.FC<ScheduleMatchCardProps> = ({
               initials={team2.initials}
               time={''}
               name={team2.name}
-              team1score={Number(team1score)}
-              team2score={Number(team2score)}
-              minute={minute}
+           
+              team2score={team2score}
+            
             />
           </div>
           <div className='flex items-center'>
