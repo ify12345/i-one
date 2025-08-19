@@ -7,11 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-       primary: '#00FF94',
+       primary: '#29A96B',
        primaryLight: '#8F8F8F',
        stroke:'#E2E8F0',
        success:'#4DB675',
-       danger:'#ff0011'
+       danger:'#ff0011',
+       stroke:'#DFDFDF'
       },
     },
   },
