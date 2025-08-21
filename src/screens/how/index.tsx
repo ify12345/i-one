@@ -10,9 +10,9 @@ const How = () => {
         <p className="text-[#000] text-base lg:text-3xl play-fair font-semibold text-center">
           Spend Less Time Being Indecisive
         </p>
-        <p className=" text-primaryLight text-sm lg:text-lg play-fair font-normal text-center">
-          Find a game, book a session, join a team, and track your stats with
-          Ai-One.
+        <p className=" text-primaryLight max-w-[600px] text-sm lg:text-lg play-fair font-normal text-center">
+                  schedule matches, book a session, create team formations, join a team, and track your stats both at the team and player level  with i-One.
+
         </p>
         <div className="flex flex-col lg:flex-row gap-3 lg:gap-[132px] mt-10">
           <div className="flex flex-col gap-5  items-center">
