@@ -13,8 +13,8 @@ interface ScheduleMatchCardProps {
   }
   team2: { initials?: string; name?: string }
   time: string // e.g., "Friendly Match"
-  team1score: number; // Score for team 1
-  team2score: number; // Score for team 2
+  team1score: string; // Score for team 1
+  team2score: string; // Score for team 2
   minute: string;
   joined: boolean; // Indicates if the user has joined the match
 }
