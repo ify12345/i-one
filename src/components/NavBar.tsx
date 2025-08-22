@@ -4,69 +4,86 @@ import { Link, NavLink } from 'react-router-dom'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoClose } from 'react-icons/io5'
 import Logo from '@/assets/images/logo.png'
+import ContactModal from '@/screens/contact'
 
 const Navbar: React.FC = () => {
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
+    const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
 
-  const toggleSideMenu = () => {
-    setIsSideMenuOpen(!isSideMenuOpen)
-  }
+    const toggleSideMenu = () => {
+        setIsSideMenuOpen(!isSideMenuOpen)
+    }
 
-  const handleLogout = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    // Implement your logout logic here
-  }
+    const handleLogout = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault()
+        // Implement your logout logic here
+    }
 
-  return (
-    <nav className="relative flex justify-between items-center py-6 lg:py-[60px] bg-white px-5 lg:px-[120px]">
-      {/* Logo */}
-      <Link className="w-full max-w-[87px]" to="/">
-        <img
-          className="w-full object-cover h-full"
-          src={Logo}
-          alt="ISO Access"
-        />
-      </Link>
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-      {/* Desktop Navigation */}
-      <ul className="hidden md:flex gap-10 text-[#ababad]">
-        <li>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              ` text-xs hover:text-primary transition duration-500 ease-in-out ${isActive ? 'text-primary' : 'text-primaryLight'}`
-            }
-          >
-          Home
-          </NavLink>
-        </li>
-        <li>
-           <NavLink
-            to="/how-it-works"
-            className={({ isActive }) =>
-              ` text-xs hover:text-primary transition duration-500 ease-in-out ${isActive ? 'text-primary' : 'text-primaryLight'}`
-            }
-          >
-          How it Works
-          </NavLink>
-        </li>
-       
-      </ul>
+    const openContactModal = () => setIsContactModalOpen(true);
+    const closeContactModal = () => setIsContactModalOpen(false);
 
-      {/* Get the App Button (Desktop) */}
-      <div className="md:flex items-center gap-3 hidden">
-        <Link
-          to="/sign-in"
-          className="text-white bg-primary py-[10px] px-[40px] rounded-md hover:scale-95 transition-all duration-300"
-          role="button"
-        >
-          Get the app
-        </Link>
-      </div>
+    return (
+        <nav className="relative flex justify-between items-center py-6 lg:py-[60px] bg-white px-5 lg:px-[120px]">
+            {/* Logo */}
+            <Link className="w-full max-w-[87px]" to="/">
+                <img
+                    className="w-full object-cover h-full"
+                    src={Logo}
+                    alt="ISO Access"
+                />
+            </Link>
+
+            {/* Desktop Navigation */}
+            <ul className="hidden md:flex gap-10 text-[#ababad]">
+                <li>
+                    <NavLink
+                        to="/"
+                        className={({ isActive }) =>
+                            ` text-md hover:text-primary transition duration-500 ease-in-out ${isActive ? 'text-primary' : 'text-primaryLight'}`
+                        }
+                    >
+                        Home
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink
+                        to="/how-it-works"
+                        className={({ isActive }) =>
+                            ` text-md hover:text-primary transition duration-500 ease-in-out ${isActive ? 'text-primary' : 'text-primaryLight'}`
+                        }
+                    >
+                        How it Works
+                    </NavLink>
+                </li>
+                <li onClick={openContactModal}>
+                    <button
+
+
+                        className={
+                            'text-md hover:text-primary transition duration-500 ease-in-out text-primaryLight'
+                        }
+                    >
+                        Contact us
+                    </button>
+                </li>
+
+            </ul>
+
+            {/* Get the App Button (Desktop) */}
+            <div className="md:flex items-center gap-3 hidden">
+                <Link
+                    to="/sign-in"
+                    className="text-white bg-primary py-[10px] px-[40px] rounded-md hover:scale-95 transition-all duration-300"
+                    role="button"
+                >
+                    Get the app
+                </Link>
+            </div>
 
             <button id="menu-btn" className="block md:hidden " onClick={toggleSideMenu}>
                 {!isSideMenuOpen && (
-                 <GiHamburgerMenu size={24} className="text-primary " />
+                    <GiHamburgerMenu size={24} className="text-primary " />
                 )}
             </button>
 
@@ -82,14 +99,14 @@ const Navbar: React.FC = () => {
                 className={`fixed top-0 left-0 h-full bg-[#fff] md:hidden shadow-lg transform ${isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
                     } transition-transform duration-300 z-30 w-full p-5`}
             >
-                 <button id="menu-btn" className="block md:hidden " onClick={toggleSideMenu}>
+                <button id="menu-btn" className="block md:hidden " onClick={toggleSideMenu}>
 
-                 {isSideMenuOpen && ( 
-                 
-                    <IoClose size={28} className="text-primary z-50 absolute right-5" />
-                )}
+                    {isSideMenuOpen && (
 
-                 </button>
+                        <IoClose size={28} className="text-primary z-50 absolute right-5" />
+                    )}
+
+                </button>
 
 
                 <ul className="flex flex-col gap-5 text-[#ABADAC] w-full h-full justify-center items-center">
@@ -111,6 +128,17 @@ const Navbar: React.FC = () => {
                             How It Works
                         </Link>
                     </li>
+                    <li onClick={openContactModal}>
+                        <button
+
+
+                            className={
+                                'text-md hover:text-primary transition duration-500 ease-in-out text-primaryLight'
+                            }
+                        >
+                            Contact us
+                        </button>
+                    </li>
                     <li>
                         <Link
                             to="/services"
@@ -131,6 +159,10 @@ const Navbar: React.FC = () => {
                     </li>
                 </ul>
             </div>
+            <ContactModal
+                isOpen={isContactModalOpen}
+                onClose={closeContactModal}
+            />
         </nav>
     );
 };

@@ -9,12 +9,12 @@ import TeamPolygon2 from './TeamPolygon2'
 
 interface ScheduleMatchCardProps {
   team1: {
-    initials: string; name: string
+    initials?: string; name?: string
   }
-  team2: { initials: string; name: string }
+  team2: { initials?: string; name?: string }
   time: string // e.g., "Friendly Match"
-  team1score: string | number; // Score for team 1
-  team2score: string | number; // Score for team 2
+  team1score: number; // Score for team 1
+  team2score: number; // Score for team 2
   minute: string;
   joined: boolean; // Indicates if the user has joined the match
 }
@@ -50,17 +50,13 @@ const ScheduleMatchCard: React.FC<ScheduleMatchCardProps> = ({
               name={team1.name}
               time={''}
               team1score={team1score}
-           
-             
             />
 
             <TeamPolygon2
               initials={team2.initials}
               time={''}
               name={team2.name}
-           
               team2score={team2score}
-            
             />
 
           </div>

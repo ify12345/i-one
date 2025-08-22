@@ -36,13 +36,12 @@ const Footer: React.FC = () => {
       <footer className="px-5 lg:px-[120px] flex flex-col md:flex-row justify-between bg-[#000] py-[40px] border-t border-[#E4E7EC] mt-[40px] gap-5 lg:gap-0">
         <div className="flex-col flex  justify-between w-full gap-[92px]">
           <div className="flex-col flex gap-2 lg:gap-[22px] justify-center items-center w-full max-w-[364px] mx-auto text-[#fff]">
-            <p className="footer-text text-sm">CONVINCED?</p>
+            <p className="footer-text text-sm">GAME ON?</p>
             <p className="text-2xl font-bold text-center">
-              Let's create magic together
+              Build your squad, own the match
             </p>
-            <p className="text-[13px] lg:text-base  font-light text-center">
-              Let us unleash our creativity and expertise to create designs that
-              deliver extraordinary results.
+            <p className="text-[13px] lg:text-base font-light text-center">
+              From squads to pitches, we make it simple to set up and play anywhere.
             </p>
             <Link
               to="/role"

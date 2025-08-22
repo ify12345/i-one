@@ -38,9 +38,9 @@ const Role = () => {
     <RoleLayout>
       <div className="h-screen flex flex-col items-center justify-center">
         <div className="md:max-w-[490px] p-4 sm:p-6 md:p-0 w-full">
-          <h1 className="text-[24px] sm:text-[28px] w-full text-left md:text-[36px] lg:text-[44px] font-extrabold">
+          <a href="/" className="text-[24px] sm:text-[28px] w-full text-left md:text-[36px] lg:text-[44px] font-extrabold">
             i-<span className="text-primary">o</span>ne
-          </h1>
+          </a>
 
           <div className="md:mt-[65px] mt-[40px] flex flex-col gap-[30px] md:gap-[68px]">
             <div>

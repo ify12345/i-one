@@ -7,9 +7,9 @@ interface TeamPolygon2Props {
   initials: string;
   name: string;
   time: string
-  team1score: number;
-  team2score: number;
-  minute: string;
+  team1score?: number;
+  team2score?: number;
+  minute?: string;
   joined?: boolean; // Optional prop to indicate if the user has joined the match
 }
 
