@@ -67,9 +67,9 @@ const SignIn = () => {
             <form className="flex-grow overflow-y-auto" onSubmit={handleSubmit}>
               <div className="h-full flex items-center justify-center">
                 <div className="max-w-md w-full">
-                  <h1 className="text-[24px] sm:text-[28px] w-full text-left md:text-[36px] lg:text-[44px] font-extrabold">
+                  <a href="/" className="text-[24px] sm:text-[28px] w-full text-left md:text-[36px] lg:text-[44px] font-extrabold">
                     i-<span className="text-primary">o</span>ne
-                  </h1>
+                  </a>
 
                   <h2 className="text-xl sm:text-2xl md:text-[44px] mt-[40px] sm:mt-[70px] font-bold mb-6">
                     Welcome Back!

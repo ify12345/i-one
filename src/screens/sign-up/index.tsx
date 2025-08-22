@@ -92,9 +92,9 @@ const SignUp = () => {
     <AuthLayout>
       <div className="h-screen w-full flex items-center justify-center p-4">
         <div className="max-w-md w-full">
-          <h1 className="text-[24px] sm:text-[28px] text-left md:text-[36px] font-extrabold">
+          <a href="/" className="text-[24px] sm:text-[28px] text-left md:text-[36px] font-extrabold">
             i-<span className="text-primary">o</span>ne
-          </h1>
+          </a>
           <h2 className="text-xl md:text-[44px] mt-10 font-bold mb-6">
             Create Account
           </h2>

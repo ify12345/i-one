@@ -339,8 +339,8 @@ export default function Schedule() {
                               team2={match.teams.team2}
                               time={match.time}
                               minute={match.minute}
-                              team1score={match.team1score}
-                              team2score={match.team2score}
+                              team1score={String(match.team1score)}
+                              team2score={String(match.team2score)}
                               joined={false}
                             />
                           ))}
@@ -386,8 +386,8 @@ export default function Schedule() {
                               team2={match.teams.team2}
                               time={match.time}
                               minute={match.minute}
-                              team1score={match.team1score}
-                              team2score={match.team2score}
+                              team1score={String(match.team1score)}
+                              team2score={String(match.team2score)}
                               joined={false}
                             />
                           ))}
@@ -433,8 +433,8 @@ export default function Schedule() {
                               team2={match.teams.team2}
                               time={match.time}
                               minute={match.minute}
-                              team1score={match.team1score}
-                              team2score={match.team2score}
+                              team1score={String(match.team1score)}
+                              team2score={String(match.team2score)}
                               joined={false}
                             />
                           ))}
