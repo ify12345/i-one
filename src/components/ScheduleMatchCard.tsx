@@ -67,8 +67,8 @@ const ScheduleMatchCard: React.FC<ScheduleMatchCardProps> = ({
 
         </div>
 
-        <div className={`flex items-center flex-end ${minute ? 'w-[10%]' : 'w-[18%]'} h-full`}>
-          <span className='w-full'>
+        <div className={`flex items-center flex-end ${minute ? 'md:w-[16%] w-[20%]' : 'w-[18%]'} h-full`}>
+          <span className='w-full text-right'>
             {
               minute ? <span>{minute}</span> : <span className='text-black'>[Timer]</span>
             }
@@ -79,9 +79,9 @@ const ScheduleMatchCard: React.FC<ScheduleMatchCardProps> = ({
 
           <div className={`flex  items-center ${joined ? '-rotate-90 transform px-2' : 'px-[12px] md:px-[10px] '}`}>
 
-            {joined ? <button className='text-black text-xs p-2 rounded-md bg-primary'>Joined</button>
+            {joined ? <button className='text-black text-xs p-[4px] md:p-2 rounded-md bg-primary'>Joined</button>
               : (
-                <div>
+                <div className=''>
                   <p>
                     {
                       team1score ? <span>{team1score}</span> : <span className='text-black'>-</span>
