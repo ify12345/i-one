@@ -35,7 +35,7 @@ const Homepage = () => {
   return (
     <HomeLayout>
       <div className="flex flex-col lg:flex-row gap-6 2xl:gap-14 2xl:px-[100px] justify-center ">
-        <div className=" w-auto h-auto rounded-[20px] shadow-md p-6 md:p-[48px_40px] gap-[60px] border">
+        <div className=" w-auto h-full rounded-[20px] shadow-md p-6 md:p-[48px_40px] gap-[60px] border">
           <div className="w-full md:h-[140px] gap-[31px]">
             {/* Greeting Section */}
             <div className="flex justify-between items-center mb-5">
@@ -71,7 +71,9 @@ const Homepage = () => {
           </div>
 
           {/* Nearby Pitches Section with Swiper */}
+          { !pitches ? <p>tola</p> :
           <SwiperComponent pitches={pitches} />
+}
         </div>
         <FixturesComponent />
       </div>
