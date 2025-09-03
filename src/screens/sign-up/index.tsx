@@ -90,8 +90,8 @@ const SignUp = () => {
 
   return (
     <AuthLayout>
-      <div className="h-screen w-full flex items-center justify-center p-4">
-        <div className="max-w-md w-full">
+      <div className="h-svh w-full flex items-center justify-center p-4">
+        <div className="max-w-md h-[600px] overflow-y-auto w-full">
           <a href="/" className="text-[24px] sm:text-[28px] text-left md:text-[36px] font-extrabold">
             i-<span className="text-primary">o</span>ne
           </a>

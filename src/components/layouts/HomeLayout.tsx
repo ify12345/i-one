@@ -5,7 +5,7 @@ import ioneBg from '../../assets/images/ione-bg.png'
 import Footer2 from '../Footer2'
 import { useNavigate } from 'react-router-dom'
 import userFace from '../../assets/images/userFace.png'
-import { CiLogout } from "react-icons/ci";
+import { CiLogout } from 'react-icons/ci'
 import { useAppSelector } from '@/redux/store'
 
 interface HomeLayoutProps {
@@ -20,7 +20,7 @@ interface NavItem {
 }
 
 const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
-   const { user } = useAppSelector(state => state.auth)
+  const { user } = useAppSelector(state => state.auth)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
   const [currentPath, setCurrentPath] = useState<string>('')
   const [activeId, setActiveId] = useState<number>(1) // Default to Home
@@ -178,48 +178,72 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
           </div>
         </div>
       </nav>
-       <div 
+      <div
         className={`fixed inset-0 cursor-pointer z-50 bg-black/30 transition-all duration-700 ${
           profile
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+            ? 'opacity-100 pointer-events-auto'
+            : 'opacity-0 pointer-events-none'
         }`}
         onClick={handleProfile}
       >
         <div
           className={`absolute top-0 cursor-arrow h-full right-0 bg-white shadow-lg transition-all duration-700 ${
-            profile ? "lg:w-[500px] w-[300px]" : "w-0 whitespace-nowrap"
+            profile ? 'lg:w-[500px] w-[300px]' : 'w-0 whitespace-nowrap'
           }`}
-          onClick={(e) => e.stopPropagation()}
+          onClick={e => e.stopPropagation()}
         >
           <div
             className={`transition-all w-full duration-700 ${
               profile
-                ? "opacity-100 pointer-events-auto"
-                : "opacity-0 pointer-events-none"
+                ? 'opacity-100 pointer-events-auto'
+                : 'opacity-0 pointer-events-none'
             }`}
           >
             <div className="py-[50px] whitespace-nowrap flex flex-col gap-[5px] px-[20px] md:px-[35px]">
-              <div className="flex gap-2 text-[17px] md:text-[28px] items-center">
-                <h1>{user.nickname || "User"}</h1>
-              
+              <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[5px] ">
+                <p className="text-[12px] text-[#A3A3A3]">Nickname:</p>
+                <h1 className=" text-[17px] md:text-[28px]">
+                  {user.nickname || 'User'}
+                </h1>
               </div>
               <div className="border-b-[#A3A3A3] border-b-[1px] pb-8">
                 <p className="text-[#A3A3A3] text-[12px]">
                   {/* {userData.department || "User"} */}
                 </p>
               </div>
-              <div className='flex'>
-              <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[35px] ">
-                <p className="text-[12px] text-[#A3A3A3]">Email Address:</p>
-                {/* <h1 className=" text-[17px] md:text-[28px]">{userData.email || "User"}</h1> */}
+              <div className="flex flex-col">
+                <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[35px] ">
+                  <p className="text-[12px] text-[#A3A3A3]">First Name:</p>
+                  <h1 className=" text-[17px] md:text-[24px]">
+                    {user.firstName || 'User'}
+                  </h1>
+                </div>
+                <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[35px] ">
+                  <p className="text-[12px] text-[#A3A3A3]">Last Name:</p>
+                  <h1 className=" text-[17px] md:text-[24px]">
+                    {user.lastName || 'User'}
+                  </h1>
+                </div>
+              </div>
+              <div className="flex gap-[126px]">
+                <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[35px] ">
+                  <p className="text-[12px] text-[#A3A3A3]">Position:</p>
+                  <h1 className=" text-[17px] md:text-[24px]">
+                    {user.position || 'User'}
+                  </h1>
+                </div>
+                <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[35px] ">
+                  <p className="text-[12px] text-[#A3A3A3]">Number:</p>
+                  <h1 className=" text-[17px] md:text-[24px]">
+                    {user.phoneNumber || 'User'}
+                  </h1>
+                </div>
               </div>
               <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[35px] ">
-                <p className="text-[12px] text-[#A3A3A3]">Matric Number:</p>
-                <h1 className=" text-[17px] md:text-[28px]">
-                  {/* {userData.matricNumber || "User"} */}
+                <p className="text-[12px] text-[#A3A3A3]">Email:</p>
+                <h1 className=" text-[17px] md:text-[24px]">
+                  {user.email || 'User'}
                 </h1>
-              </div>
               </div>
               <button
                 // onClick={handleLogout}
