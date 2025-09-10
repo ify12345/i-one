@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { MdOutlineClose } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { showToast } from './Toast'
-import { useAppDispatch } from '@/redux/store'
+import { persistor, useAppDispatch } from '@/redux/store'
 import { logOut } from '@/api/auth'
 import { logout } from '@/redux/reducers/auth'
 import Loader from './Loader'
@@ -18,8 +18,8 @@ interface ContactModalProps {
 const LogoutModal = ({ isOpen, onClose }: ContactModalProps) => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-   const [loading, setLoading] = useState(false)
-  
+  const [loading, setLoading] = useState(false)
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     dispatch(logout())
@@ -31,7 +31,8 @@ const LogoutModal = ({ isOpen, onClose }: ContactModalProps) => {
           type: 'success',
           msg: response.message || 'Logout successful',
         })
-        navigate('/')
+        persistor.purge();
+       
       })
       .catch(err => {
         setLoading(false)
@@ -103,7 +104,7 @@ const LogoutModal = ({ isOpen, onClose }: ContactModalProps) => {
               </div>
             </motion.div>
           </motion.div>
-          <Loader visible={loading}/>
+          <Loader visible={loading} />
         </>
       )}
     </AnimatePresence>

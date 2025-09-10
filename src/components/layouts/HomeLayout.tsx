@@ -109,8 +109,8 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
                           key={item.id}
                           onClick={() => handleNavClick(item.path)}
                           className={` hover:text-primary font-medium px-3 py-2 transition-colors duration-200 cursor-pointer ${activeId === item.id
-                              ? 'text-black font-extrabold border-b-2 border-primary'
-                              : 'text-gray-400'
+                            ? 'text-black font-extrabold border-b-2 border-primary'
+                            : 'text-gray-400'
                             }`}
                         >
                           {item.name}
@@ -180,8 +180,8 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
       </nav>
       <div
         className={`fixed inset-0 cursor-pointer z-50 bg-black/30 transition-all duration-700 ${profile
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
+          ? 'opacity-100 pointer-events-auto'
+          : 'opacity-0 pointer-events-none'
           }`}
         onClick={handleProfile}
       >
@@ -190,11 +190,10 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
             }`}
           onClick={e => e.stopPropagation()}
         >
-          <div className={`transition-all  overflow-y-auto h-full w-full duration-700 ${
-              profile
-                ? 'opacity-100 pointer-events-auto'
-                : 'opacity-0 pointer-events-none'
-              }`}
+          <div className={`transition-all  overflow-y-auto h-full w-full duration-700 ${profile
+              ? 'opacity-100 pointer-events-auto'
+              : 'opacity-0 pointer-events-none'
+            }`}
           >
             <div className="md:py-[50px] py-[20px] whitespace-nowrap flex flex-col gap-[5px] px-[20px] md:px-[35px]">
               <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[5px] ">
@@ -257,7 +256,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
       <main className="flex-grow w-full mx-auto px-4 sm:px-6 lg:px-8 py-8  HomeBackground">
         {children}
       </main>
-  <LogoutModal
+      <LogoutModal
         isOpen={isLogoutModalOpen}
         onClose={() => setIsLogoutModalOpen(false)}
       />
