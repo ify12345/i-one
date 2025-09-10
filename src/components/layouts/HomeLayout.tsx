@@ -25,6 +25,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
   const [currentPath, setCurrentPath] = useState<string>('')
+   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
   const [activeId, setActiveId] = useState<number>(1) // Default to Home
   const [profile, setProfile] = useState(false)
   // Navigation items
@@ -190,13 +191,13 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
             }`}
           onClick={e => e.stopPropagation()}
         >
-          <div
-            className={`transition-all w-full duration-700 ${profile
+          <div className={`transition-all  overflow-y-auto h-full w-full duration-700 ${
+              profile
                 ? 'opacity-100 pointer-events-auto'
                 : 'opacity-0 pointer-events-none'
               }`}
           >
-            <div className="py-[50px] whitespace-nowrap flex flex-col gap-[5px] px-[20px] md:px-[35px]">
+            <div className="md:py-[50px] py-[20px] whitespace-nowrap flex flex-col gap-[5px] px-[20px] md:px-[35px]">
               <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[5px] ">
                 <p className="text-[12px] text-[#A3A3A3]">Nickname:</p>
                 <h1 className=" text-[17px] md:text-[28px]">
@@ -211,45 +212,44 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
               <div className="flex flex-col">
                 <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[35px] ">
                   <p className="text-[12px] text-[#A3A3A3]">First Name:</p>
-                  <h1 className=" text-[17px] md:text-[24px]">
+                  <h1 className=" text-[14px] md:text-[24px]">
                     {user.firstName || 'User'}
                   </h1>
                 </div>
                 <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[35px] ">
                   <p className="text-[12px] text-[#A3A3A3]">Last Name:</p>
-                  <h1 className=" text-[17px] md:text-[24px]">
+                  <h1 className=" text-[14px] md:text-[24px]">
                     {user.lastName || 'User'}
                   </h1>
                 </div>
               </div>
-              <div className="flex gap-[126px]">
+              <div className="flex md:flex-row flex-col md:gap-[126px]">
                 <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[35px] ">
                   <p className="text-[12px] text-[#A3A3A3]">Position:</p>
-                  <h1 className=" text-[17px] md:text-[24px]">
+                  <h1 className=" text-[14px] md:text-[24px]">
                     {user.position || 'User'}
                   </h1>
                 </div>
                 <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[35px] ">
                   <p className="text-[12px] text-[#A3A3A3]">Number:</p>
-                  <h1 className=" text-[17px] md:text-[24px]">
+                  <h1 className=" text-[14px] md:text-[24px]">
                     {user.phoneNumber || 'User'}
                   </h1>
                 </div>
               </div>
               <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[35px] ">
                 <p className="text-[12px] text-[#A3A3A3]">Email:</p>
-                <h1 className=" text-[17px] md:text-[24px]">
+                <h1 className=" text-[14px] md:text-[24px]">
                   {user.email || 'User'}
                 </h1>
               </div>
               <button
                 onClick={() => setIsLogoutModalOpen(true)}
-                className="flex absolute bottom-[50px] cursor-pointer items-center gap-[22px] w-full text-left py-2 text-sm"
-              >
+                className="flex md:mt-[50px] mt-[30px] cursor-pointer items-center gap-[22px] w-full text-left py-2 text-sm">
                 <div className="rotate-180 flex justify-center items-center w-[64px] bg-[#FF00000D] h-[64px] rounded-full">
                   <CiLogout className="text-black" size={24} />
                 </div>
-                <p className=" text-[17px] md:text-[20px]">Logout</p>
+                <p className=" text-[14px] md:text-[20px]">Logout</p>
               </button>
             </div>
           </div>
@@ -258,7 +258,10 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
       <main className="flex-grow w-full mx-auto px-4 sm:px-6 lg:px-8 py-8  HomeBackground">
         {children}
       </main>
-
+  <LogoutModal
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+      />
       <Footer2 />
       <LogoutModal
         isOpen={isLogoutModalOpen}
