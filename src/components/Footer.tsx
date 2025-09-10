@@ -60,7 +60,10 @@ const Footer: React.FC = () => {
                 alt="ISO Access"
               />
             </a>
-            <a href="">© 2025 I-One. All rights reserved.</a>
+            <p>
+              © 2025 I-One. All rights reserved. | Owned by GIMUX EXCHANGE SERVICES LIMITED
+            </p>
+
             <div className="flex justify-between gap-3">
               <a href="/">
                 <svg

@@ -4,7 +4,7 @@ import store from '@/redux/store';
 import { logout } from '@/redux/reducers/auth';
 
 
-const productionBaseUrl = import.meta.env.VITE_API_BASE_URL;
+const productionBaseUrl = 'https://i-one-server-v1.onrender.com';
 
 const axiosInstance = axios.create({
   baseURL: productionBaseUrl,
