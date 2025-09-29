@@ -24,6 +24,7 @@ export default function Schedule() {
   });
   const [expandedTournaments, setExpandedTournaments] = useState<Record<string, boolean>>({});
   const [expandedFriendlies, setExpandedFriendlies] = useState<Record<string, boolean>>({});
+  const [expandedSets, setExpandedSets] = useState<Record<string, boolean>>({});
   const [dates, setDates] = useState<
     Array<{
       id: number
@@ -78,7 +79,7 @@ export default function Schedule() {
   const match = [
     {
       teams: {
-        team1: { initials: 'KP', name: 'Kano Pillars' },
+        team1: { initials: 'KP', name: 'Kano Pillars', number:"5 set created" },
         team2: { initials: 'PT', name: 'Porthacourt Thugs' },
         matchType: 'Friendly Match',
       },
@@ -216,6 +217,28 @@ export default function Schedule() {
       )
     }
   ];
+  const groupedMatchesSets = [
+    {
+      teamName: 'Kano Pillars',
+      teamInitials: 'KP',
+      number:"5 set created",
+      matches: match.filter(m =>
+        (m.teams.team1.name === 'Kano Pillars' ||
+          m.teams.team2.name === 'Kano Pillars') &&
+        m.teams.matchType === 'Friendly Match'
+      )
+    },
+    {
+      teamName: 'Eko Kings',
+      teamInitials: 'EK',
+        number:"5 set created",
+      matches: match.filter(m =>
+        (m.teams.team1.name === 'Eko Kings' ||
+          m.teams.team2.name === 'Eko Kings') &&
+        m.teams.matchType === 'Friendly Match'
+      )
+    }
+  ];
 
   const toggleAll = (teamName: string) => {
     setExpandedAll(prev => ({
@@ -233,6 +256,12 @@ export default function Schedule() {
 
   const toggleFriendlies = (teamName: string) => {
     setExpandedFriendlies(prev => ({
+      ...prev,
+      [teamName]: !prev[teamName]
+    }));
+  };
+  const toggleSets = (teamName: string) => {
+    setExpandedSets(prev => ({
       ...prev,
       [teamName]: !prev[teamName]
     }));
@@ -298,6 +327,13 @@ export default function Schedule() {
               onClick={() => handleTabClick('friendlies')}
             >
               Friendlies
+            </Link>
+            <Link
+              to="?Sets"
+              className={`rounded-[3px] py-[8px] px-[18px]  ${activeTab === 'sets' ? 'bg-primary text-white' : 'bg-gray-200'}`}
+              onClick={() => handleTabClick('sets')}
+            >
+              Sets
             </Link>
           </div>
 
@@ -424,6 +460,55 @@ export default function Schedule() {
                     </div>
 
                     {expandedFriendlies[teamSchedule.teamName] && (
+                      <div className='border-b-2 border-b-green-500 '>
+                        <div className="flex flex-col">
+                          {teamSchedule.matches.map((match, idx) => (
+                            <ScheduleMatchCard
+                              key={idx}
+                              team1={match.teams.team1}
+                              team2={match.teams.team2}
+                              time={match.time}
+                              minute={match.minute}
+                              team1score={String(match.team1score)}
+                              team2score={String(match.team2score)}
+                              joined={false}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+            {activeTab === 'sets' && (
+              <div className='space-y-4'>
+
+                {groupedMatchesSets.map((teamSchedule) => (
+                  <div key={teamSchedule.teamName} className="bg-mint-100 rounded-md overflow-hidden">
+                    <div
+                      className={`flex items-center bg-[#ECFFF8] h-full border-b-2 px-[13px] md:px-[48px]  ${expandedSets[teamSchedule.teamName] ? 'border-[#DFDFDF]' : 'border-primary rounded-b-[10px]'
+                        } justify-between cursor-pointer`}
+                      onClick={() => toggleSets(teamSchedule.teamName)}
+                    >
+                      <div className="flex justify-between w-full items-center space-x-3">
+                        <div className='flex items-center space-x-3'>
+                        <div className="w-6 h-6 bg-primary text-white text-xs font-bold rounded-full flex items-center justify-center">
+                          {teamSchedule.teamInitials}
+                        </div>
+                        <h2 className="font-semibold text-lg">{teamSchedule.teamName}</h2>
+                        </div>
+                        <h2 className='p-3'>{teamSchedule.number}</h2>
+                      </div>
+                      <div className='flex relative gap-[16px] justify-center items-center'>
+                        <div className='border-l px-[12px] md:px-[8px] h-[70px] py-0 border-[#DFDFDF]'></div>
+                        <div className="text-xl w-full absolute left-[25%] md:left-[130%]   ">
+                          <p className='flex  items-center justify-center'>{expandedSets[teamSchedule.teamName] ? <DropdownSvg /> : <Dropdown2Svg />}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {expandedSets[teamSchedule.teamName] && (
                       <div className='border-b-2 border-b-green-500 '>
                         <div className="flex flex-col">
                           {teamSchedule.matches.map((match, idx) => (

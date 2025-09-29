@@ -9,7 +9,7 @@ import TeamPolygon2 from './TeamPolygon2'
 
 interface ScheduleMatchCardProps {
   team1: {
-    initials?: string; name?: string
+    initials?: string; name?: string; number?:string
   }
   team2: { initials?: string; name?: string }
   time: string // e.g., "Friendly Match"

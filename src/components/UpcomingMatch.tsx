@@ -10,6 +10,7 @@ interface Props {
 }
 const UpcomingMatch  = ({team1, team2,matchType}:Props) => {
   return (
+    <div className='w-full max-w-[550px] mx-auto'>
     <div className="bg-white rounded-lg shadow-md p-6 sm:p-10 flex flex-col gap-4 sm:gap-8 max-w-[550px] w-full h-[327px] mx-auto">
       <div className="flex justify-between items-center">
         <div className="flex flex-col">
@@ -25,6 +26,12 @@ const UpcomingMatch  = ({team1, team2,matchType}:Props) => {
         <TeamPolygon initials={team2.initials} name={team2.name} />
         
       </div>
+    </div>
+    <div className='w-full mt-[77px] gap-4  flex'>
+      <button className='h-[45px] text-[10px] w-[100px] bg-[#FF5F5F] text-white rounded-[5px] flex items-center justify-center'>Leave Session</button>
+      <button className='h-[45px] text-[10px] w-[100px] text-black bg-[#00FF94] rounded-[5px] flex items-center justify-center'>Assign Players</button>
+    
+    </div>
     </div>
   );
 };

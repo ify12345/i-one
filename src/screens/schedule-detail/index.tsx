@@ -44,8 +44,8 @@ export default function ScheduleDetail() {
           </div>
           <div>
               <CustomInput
-                    label="Total Minutes per Match"
-                    name="Total Minutes per Match"
+                    label="Team Name 1"
+                    name="Team Name 1"
                     type="select"
                    className='text-[#5C5C5C80]'
                     options={[
@@ -58,14 +58,14 @@ export default function ScheduleDetail() {
                       { label: '7', value: '7' },
                       { label: '8', value: '8' },
                     ]}
-                    placeholder="Total Minutes per Match"
+                    placeholder="Team Name 1"
                   
                   />
           </div>
           <div>
               <CustomInput
-                    label="Numbers of Players per Team"
-                    name="Numbers of Players per Team"
+                    label="Team Name 2"
+                    name="Team Name 2"
                     type="select"
                    className='text-[#5C5C5C80]'
                     options={[
@@ -78,14 +78,14 @@ export default function ScheduleDetail() {
                       { label: '7', value: '7' },
                       { label: '8', value: '8' },
                     ]}
-                    placeholder="Numbers of Players per Team"
+                    placeholder="Team Name 2"
                   
                   />
           </div>
           <div>
               <CustomInput
-                    label="Number of Sets"
-                    name="Number of Sets"
+                    label="Number of Players per team"
+                    name="Number of Players per team"
                     type="select"
                    className='text-[#5C5C5C80]'
                     options={[
@@ -98,7 +98,7 @@ export default function ScheduleDetail() {
                       { label: '7', value: '7' },
                       { label: '8', value: '8' },
                     ]}
-                    placeholder="Number of Sets"
+                    placeholder="Number of Players per team"
                   
                   />
           </div>
