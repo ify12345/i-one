@@ -23,6 +23,7 @@ interface NavItem {
 const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
   const { user } = useAppSelector(state => state.auth)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
   const [currentPath, setCurrentPath] = useState<string>('')
    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
   const [activeId, setActiveId] = useState<number>(1) // Default to Home
@@ -108,11 +109,10 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
                         <div
                           key={item.id}
                           onClick={() => handleNavClick(item.path)}
-                          className={` hover:text-primary font-medium px-3 py-2 transition-colors duration-200 cursor-pointer ${
-                            activeId === item.id
+                          className={` hover:text-primary font-medium px-3 py-2 transition-colors duration-200 cursor-pointer ${activeId === item.id
                               ? 'text-black font-extrabold border-b-2 border-primary'
                               : 'text-gray-400'
-                          }`}
+                            }`}
                         >
                           {item.name}
                         </div>
@@ -169,9 +169,8 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
                 <div
                   key={item.id}
                   onClick={() => handleNavClick(item.path)}
-                  className={` hover:text-primary block px-3 py-2 text-base font-medium cursor-pointer ${
-                    activeId === item.id ? 'text-primary' : 'text-gray-400'
-                  }`}
+                  className={` hover:text-primary block px-3 py-2 text-base font-medium cursor-pointer ${activeId === item.id ? 'text-primary' : 'text-gray-400'
+                    }`}
                 >
                   {item.name}
                 </div>
@@ -181,25 +180,22 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
         </div>
       </nav>
       <div
-        className={`fixed inset-0 cursor-pointer z-50 bg-black/30 transition-all duration-700 ${
-          profile
+        className={`fixed inset-0 cursor-pointer z-50 bg-black/30 transition-all duration-700 ${profile
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
-        }`}
+          }`}
         onClick={handleProfile}
       >
         <div
-          className={`absolute top-0 cursor-arrow h-full right-0 bg-white shadow-lg transition-all duration-700 ${
-            profile ? 'lg:w-[500px] w-[300px]' : 'w-0 whitespace-nowrap'
-          }`}
+          className={`absolute top-0 cursor-arrow h-full right-0 bg-white shadow-lg transition-all duration-700 ${profile ? 'lg:w-[500px] w-[300px]' : 'w-0 whitespace-nowrap'
+            }`}
           onClick={e => e.stopPropagation()}
         >
-          <div
-            className={`transition-all  overflow-y-auto h-full w-full duration-700 ${
+          <div className={`transition-all  overflow-y-auto h-full w-full duration-700 ${
               profile
                 ? 'opacity-100 pointer-events-auto'
                 : 'opacity-0 pointer-events-none'
-            }`}
+              }`}
           >
             <div className="md:py-[50px] py-[20px] whitespace-nowrap flex flex-col gap-[5px] px-[20px] md:px-[35px]">
               <div className="border-b-[#A3A3A3] flex flex-col gap-3 mt-[5px] ">
@@ -249,8 +245,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
               </div>
               <button
                 onClick={() => setIsLogoutModalOpen(true)}
-                className="flex md:mt-[50px] mt-[30px] cursor-pointer items-center gap-[22px] w-full text-left py-2 text-sm"
-              >
+                className="flex md:mt-[50px] mt-[30px] cursor-pointer items-center gap-[22px] w-full text-left py-2 text-sm">
                 <div className="rotate-180 flex justify-center items-center w-[64px] bg-[#FF00000D] h-[64px] rounded-full">
                   <CiLogout className="text-black" size={24} />
                 </div>
@@ -268,6 +263,10 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
         onClose={() => setIsLogoutModalOpen(false)}
       />
       <Footer2 />
+      <LogoutModal
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+      />
     </div>
   )
 }
