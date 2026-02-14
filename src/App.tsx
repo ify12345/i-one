@@ -27,6 +27,9 @@ import LivePage from './screens/live-match/index.js'
 import { getUser } from './api/auth.js'
 import { AnimatePresence, motion } from 'framer-motion'
 import Preloader from './components/Preloader.js'
+import AdminSignUp from './screens/AdminSignUp/Index.js'
+import AdminHome from './screens/AdminHome/Index.js'
+import AdminSchedule from './screens/AdminSchedule/Index.js'
 
 const AppContent = () => {
   const { isAuthenticated, isRegistered, user } = useAppSelector(
@@ -66,6 +69,11 @@ const AppContent = () => {
             <Route path="/live-match" element={<LivePage />} />
           </>
         )}
+        {/* admin */}
+          <Route path="/admin-register" element={<AdminSignUp />} />
+          <Route path="/admin" element={<AdminHome />} />
+          <Route path="/admin-schedule" element={<AdminSchedule />} />
+
       </Routes>
     </Router>
   )
