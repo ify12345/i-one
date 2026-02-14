@@ -75,14 +75,15 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                                             <MapPin className="text-primary mt-1" size={20} />
                                             <div>
                                                 <h3 className="font-medium text-foreground">Address</h3>
-                                                <a
-                                                    href="https://maps.google.com/?q=19+Ogbatai+Road,+Woji,+Port+Harcourt,+Nigeria"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="text-muted-foreground text-sm text-primary transition-colors cursor-pointer hover:text-green-300 animate-pulse"
-                                                >
-                                                    Eletu Street, Osapa Lekki, Lagos, Nigeria
-                                                </a>
+                                               <a
+												  href="https://maps.google.com/?q=27+Reverend+Adegoke+Okota,+Lagos,+Nigeria"
+												  target="_blank"
+												  rel="noopener noreferrer"
+												  className="text-muted-foreground text-sm text-primary transition-colors cursor-pointer hover:text-green-300 animate-pulse"
+												>
+												  27 Reverend Adegoke, Okota, Lagos, Nigeria
+												</a>
+
                                             </div>
                                         </div>
 
