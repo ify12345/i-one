@@ -25,7 +25,6 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
   const [currentPath, setCurrentPath] = useState<string>('')
-   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
   const [activeId, setActiveId] = useState<number>(1) // Default to Home
   const [profile, setProfile] = useState(false)
   // Navigation items

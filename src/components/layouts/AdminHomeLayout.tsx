@@ -30,7 +30,7 @@ const AdminHomeLayout: React.FC<AdminHomeLayoutProps> = ({ children, activeNavId
   // Navigation items
   const navigation: NavItem[] = [
     { id: 1, name: 'Home', path: '/admin' },
-    { id: 2, name: 'Schedule', path: '/admin-schedule' },
+    { id: 2, name: 'Schedule', path: 'admin-schedule' },
     { id: 3, name: 'Tournament', path: '/tournament' },
     // { id: 4, name: 'Profile', path: '/profile' },
     { id: 5, name: 'Live Match', path: '/live-match' },

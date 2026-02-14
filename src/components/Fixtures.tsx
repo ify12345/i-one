@@ -17,10 +17,10 @@ const FixturesComponent: React.FC = () => {
       
       {/* Show skeletons when no data is available */}
       {!hasData && (
-        <div className="grid grid-cols-1  lg:grid-cols-2 overflow-x-hidden gap-4 h-auto py-6 overflow-y-auto">
+        <div className="grid grid-cols-1  lg:grid-cols-2 overflow-x-hidden gap-7 h-auto py-6 overflow-y-auto">
           {/* Show 4 skeleton cards while loading */}
           {[1, 2, 3, 4, 5, 6].map((index) => (
-            <div key={index} className="bg-white w-[312px] flex flex-col  justify-center mx-auto h-[164px] rounded-lg shadow-sm p-4 border border-gray-200 animate-pulse">
+            <div key={index} className="bg-white gap-4 w-[312px] max-w-full flex flex-col  justify-center mx-auto h-[164px] rounded-lg shadow-sm p-4 border border-gray-200 animate-pulse">
               {/* Match type skeleton */}
               <div className='flex items-center gap-6 justify-between'>
               <div className="h-4 bg-[#CDCDCD] rounded w-[20%] mb-5"></div>

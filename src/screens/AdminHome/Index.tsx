@@ -22,7 +22,14 @@ const AdminHome = () => {
   return (
     <AdminHomeLayout>
       <div className="flex flex-col lg:flex-row gap-6 2xl:gap-14 2xl:px-[100px] justify-center ">
-        <div className=" w-1/2 h-full rounded-[20px] shadow-md p-6 md:p-[48px_40px] gap-[60px] border">
+        <div className='fixed left-0 px-[50px] xl:px-[200px] top-0 w-full z-50  bg-[#ECF8EF] rounded-b-[20px] border-[#43B75D] border-b-[2px]  h-[80px]'>
+<div className='flex flex-col justify-center gap-1 h-full '>
+<p className='text-[18px] font-bold'>New Player</p>
+<p className='text-[#6D717F] text-[15px]'>[Player Name] has joined your session</p>
+</div>
+
+        </div>
+        <div className=" xl:w-1/2 w-full h-full rounded-[20px] shadow-md p-6 md:p-[48px_40px] gap-[60px] border">
         <div className="relative w-full h-[480px] rounded-[20px] overflow-hidden">
   {/* Background Image */}
   <img
@@ -36,6 +43,11 @@ const AdminHome = () => {
 <div className='absolute p-6 '>
     <div className='bg-[#FFFFFF33] rounded-[10px] text-center items-center w-auto'>
     <p className='text-white p-2'>Pitch Condition: Excellent</p>
+    </div>
+</div>
+<div className='absolute right-0 p-6 '>
+    <div className='bg-[#FFFFFF33] py-[2px] px-[5px] rounded-[10px] text-center items-center w-auto'>
+   <BellSvg/>
     </div>
 </div>
   {/* Text Content */}
