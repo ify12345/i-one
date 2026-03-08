@@ -1,4 +1,4 @@
-import React from 'react'
+AAAAAAAimport React from 'react'
 import apps from '@/assets/images/phone.png'
 
 import logo from '@/assets/images/footer-logo.png'
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
               />
             </a>
             <p>
-              © 2025 I-One. All rights reserved. | Owned by GIMUX EXCHANGE SERVICES LIMITED
+              © 2025 I-One. All rights reserved. | Owned by I-one-sports ltd
             </p>
 
             <div className="flex justify-between gap-3">
