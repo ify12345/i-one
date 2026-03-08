@@ -1,4 +1,4 @@
-AAAAAAAimport React from 'react'
+import React from 'react'
 import apps from '@/assets/images/phone.png'
 
 import logo from '@/assets/images/footer-logo.png'
