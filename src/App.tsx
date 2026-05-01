@@ -24,6 +24,7 @@ import Lineup from './screens/upcoming-match/index.js'
 import ProfileStats from './screens/profile-stats/index.js'
 import Verify from './screens/verify/Index.js'
 import LivePage from './screens/live-match/index.js'
+import Privacy from './screens/privacy/index.js'
 import DeleteAccount from './screens/DeleteAccount/index.js'
 import { getUser } from './api/auth.js'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -52,6 +53,7 @@ const AppContent = () => {
             <Route path="/verification" element={<Verify />} />
             <Route path="/reset" element={<ResetPassword />} />
             <Route path="/reset-success" element={<ResetSuccess />} />
+            <Route path="/privacy" element={<Privacy />} />
           </>
         )}
 

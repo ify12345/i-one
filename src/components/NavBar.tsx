@@ -67,6 +67,16 @@ const Navbar: React.FC = () => {
                         Contact us
                     </button>
                 </li>
+                <li>
+                    <NavLink
+                        to="/privacy"
+                        className={({ isActive }) =>
+                            ` text-md hover:text-primary transition duration-500 ease-in-out ${isActive ? 'text-primary' : 'text-primaryLight'}`
+                        }
+                    >
+                        Privacy
+                    </NavLink>
+                </li>
 
             </ul>
 
@@ -138,6 +148,15 @@ const Navbar: React.FC = () => {
                         >
                             Contact us
                         </button>
+                    </li>
+                    <li>
+                        <Link
+                            to="/privacy"
+                            className="text-sm hover:text-primary transition duration-500 ease-in-out"
+                            onClick={toggleSideMenu}
+                        >
+                            Privacy
+                        </Link>
                     </li>
                     <li>
                         <Link
