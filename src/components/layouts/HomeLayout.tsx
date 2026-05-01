@@ -3,11 +3,12 @@ import React, { useState, ReactNode, useEffect } from 'react'
 import logo from '@/assets/images/footer-logo.png'
 import ioneBg from '../../assets/images/ione-bg.png'
 import Footer2 from '../Footer2'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import userFace from '../../assets/images/userFace.png'
 import { CiLogout } from 'react-icons/ci'
 import { useAppSelector } from '@/redux/store'
 import LogoutModal from '../LogoutModal'
+import DeleteAccountModal from '../DeleteAccountModal'
 
 interface HomeLayoutProps {
   children: ReactNode
@@ -24,6 +25,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
   const { user } = useAppSelector(state => state.auth)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const [currentPath, setCurrentPath] = useState<string>('')
   const [activeId, setActiveId] = useState<number>(1) // Default to Home
   const [profile, setProfile] = useState(false)
@@ -38,7 +40,10 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
   const handleProfile = () => {
     setProfile(prev => !prev)
   }
-
+const handleDeleteAccount = () => {
+  console.log("Account deleted")
+  setIsDeleteModalOpen(false)
+}
   // Detect current path on component mount and window location changes
   useEffect(() => {
     // Get current path
@@ -249,6 +254,17 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children, activeNavId }) => {
                 </div>
                 <p className=" text-[14px] md:text-[20px]">Logout</p>
               </button>
+              <button
+  onClick={() => setIsDeleteModalOpen(true)}
+  className="flex mt-[20px] cursor-pointer items-center gap-[22px] w-full text-left py-2 text-sm"
+>
+  <div className="flex justify-center items-center w-[64px] bg-red-100 h-[64px] rounded-full">
+    <CiLogout className="text-red-600" size={24} />
+  </div>
+  <Link to="/delete-account" className="text-[14px] md:text-[20px] text-red-600">
+    Delete Account
+  </Link>
+</button>
             </div>
           </div>
         </div>

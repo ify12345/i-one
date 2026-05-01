@@ -25,6 +25,7 @@ import ProfileStats from './screens/profile-stats/index.js'
 import Verify from './screens/verify/Index.js'
 import LivePage from './screens/live-match/index.js'
 import Privacy from './screens/privacy/index.js'
+import DeleteAccount from './screens/DeleteAccount/index.js'
 import { getUser } from './api/auth.js'
 import { AnimatePresence, motion } from 'framer-motion'
 import Preloader from './components/Preloader.js'
@@ -66,6 +67,7 @@ const AppContent = () => {
             <Route path="/upcoming-match" element={<Lineup />} />
             <Route path="/profile-stats" element={<ProfileStats />} />
             <Route path="/live-match" element={<LivePage />} />
+            <Route path="/delete-account" element={<DeleteAccount />} />
           </>
         )}
       </Routes>
