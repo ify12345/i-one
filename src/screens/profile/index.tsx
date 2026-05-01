@@ -67,13 +67,13 @@ export default function Profile() {
               </span>
             </div>
 
-            <button
+            {/* <button
               onClick={() => setIsLogoutModalOpen(true)}
               className="flex items-center gap-1 text-danger font-semibold hover:scale-95  transition duration-500"
             >
               Logout
               <MdLogout size={20} color="#ff0011" />
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

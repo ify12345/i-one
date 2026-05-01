@@ -1,5 +1,5 @@
 
-import { getUser, login, register } from '@/api/auth';
+import { getUser, login, register, deleteAccount } from '@/api/auth';
 import { User } from '@/components/typings';
 
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
@@ -57,7 +57,10 @@ export const authSlice = createSlice({
         state.isVerified = true;
         state.isAuthenticated = true;
       })
-
+   
+    builder.addCase(deleteAccount.fulfilled, () => {
+      return { ...initialState };
+    });
   },
 });
 

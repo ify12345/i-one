@@ -85,3 +85,18 @@ export const logOut = createAsyncThunk<logoutResponse, void, AsyncThunkConfig>(
     return apiCall(axiosInstance.get('/i-one/auth/user/logout'), thunkAPI)
   }
 )
+
+export const deleteAccount = createAsyncThunk<
+  { message: string },
+  void,
+  AsyncThunkConfig
+>(
+  'user/deleteAccount',
+  async (_, thunkAPI) => {
+    return apiCall(
+      axiosInstance.delete('/i-one/user/account'),
+      thunkAPI,
+      'auth'
+    )
+  }
+)
