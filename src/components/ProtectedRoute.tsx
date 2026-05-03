@@ -1,6 +1,6 @@
 import { useAppSelector } from "@/redux/store";
 
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useAppSelector(state => state.auth);
 
   if (!isAuthenticated) {
