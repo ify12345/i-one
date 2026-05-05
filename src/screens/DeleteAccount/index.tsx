@@ -1,33 +1,35 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { deleteAccount } from "@/api/auth";
 
 const DeleteAccount = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const { isAuthenticated } = useAppSelector(state => state.auth);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const handleDelete = async () => {
+    if (!isAuthenticated) {
+      setError("You must be logged in to delete your account.");
+      return;
+    }
+
     setLoading(true);
     setError("");
 
     try {
       const res = await dispatch(deleteAccount()).unwrap();
 
-      // ✅ success
       alert(res.message || "Account deleted successfully");
 
-      // redirect after delete
-      navigate("/"); // or "/login"
+      navigate("/"); // or "/sign-in"
     } catch (err: any) {
-      console.log(err);
-
-      // ✅ API-specific errors
       if (err?.message?.includes("session")) {
-        setError("You are in an active session. Leave it before deleting.");
+        setError("You are in an active session. Leave it first.");
       } else if (err?.message?.includes("tournament")) {
         setError("You are in an active tournament. Leave it first.");
       } else {
@@ -50,7 +52,14 @@ const DeleteAccount = () => {
           This action is permanent. All your data will be lost and cannot be recovered.
         </p>
 
-        {/* ✅ ERROR MESSAGE */}
+        {/* 🔥 AUTH ERROR */}
+        {!isAuthenticated && (
+          <p className="text-red-500 text-sm mb-4">
+            You are not authorized. Please log in first.
+          </p>
+        )}
+
+        {/* 🔥 API ERROR */}
         {error && (
           <p className="text-red-500 text-sm mb-4">
             {error}
@@ -61,7 +70,6 @@ const DeleteAccount = () => {
           
           <button
             onClick={() => navigate(-1)}
-            disabled={loading}
             className="px-6 py-3 border rounded-lg"
           >
             Cancel
@@ -69,13 +77,14 @@ const DeleteAccount = () => {
 
           <button
             onClick={handleDelete}
-            disabled={loading}
-            className="px-6 py-3 bg-red-500 text-white rounded-lg font-semibold"
+            disabled={loading || !isAuthenticated}
+            className="px-6 py-3 bg-red-500 text-white rounded-lg font-semibold disabled:opacity-50"
           >
             {loading ? "Deleting..." : "Yes, Delete My Account"}
           </button>
 
         </div>
+
       </div>
     </div>
   );

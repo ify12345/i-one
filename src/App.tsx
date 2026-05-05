@@ -29,6 +29,7 @@ import DeleteAccount from './screens/DeleteAccount/index.js'
 import { getUser } from './api/auth.js'
 import { AnimatePresence, motion } from 'framer-motion'
 import Preloader from './components/Preloader.js'
+import ProtectedRoute from './components/ProtectedRoute.js'
 
 const AppContent = () => {
   const { isAuthenticated, isRegistered, user } = useAppSelector(
@@ -67,10 +68,19 @@ const AppContent = () => {
             <Route path="/upcoming-match" element={<Lineup />} />
             <Route path="/profile-stats" element={<ProfileStats />} />
             <Route path="/live-match" element={<LivePage />} />
-            <Route path="/delete-account" element={<DeleteAccount />} />
+            {/* <Route path="/delete-account" element={<DeleteAccount />} /> */}
           </>
         )}
+          <Route
+  path="/delete-account"
+  element={
+    <ProtectedRoute>
+      <DeleteAccount />
+    </ProtectedRoute>
+  }
+/>
       </Routes>
+    
     </Router>
   )
 }
